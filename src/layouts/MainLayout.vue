@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Pocket Grease
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -92,9 +92,9 @@ const linksData = [
     icon: 'favorite',
     link: 'https://awesome.quasar.dev'
   }
-]
+];
 
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component } from 'vue-property-decorator';
 
 @Component({
   components: { EssentialLink }

@@ -128,7 +128,7 @@ module.exports = configure(function (ctx) {
       manifest: {
         name: 'Pocket Grease',
         short_name: 'Pocket Grease',
-        description: 'A Quasar Framework app',
+        description: 'A lifetime earnings calculator 🥓',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

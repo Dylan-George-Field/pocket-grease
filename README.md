@@ -1,6 +1,6 @@
 # Pocket Grease (pocket-grease)
 
-A Quasar Framework app
+A lifetime earnings calculator 🥓
 
 ## Install the dependencies
 ```bash
