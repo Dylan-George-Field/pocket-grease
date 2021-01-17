@@ -1,6 +1,6 @@
 <template>
   <div>
-  <p>💲 Earnings</p>
+  <p>Earnings</p>
   <q-input v-model="text" label="Income" />
   </div>
 </template>

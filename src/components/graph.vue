@@ -6,9 +6,9 @@ export default {
   props: ['chartdata', 'options'],
   mounted () {
     this.renderChart({
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
         datasets: [{
-            label: '# of Votes',
+            label: 'Earnings over time',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -31,7 +31,28 @@ export default {
     }, 
     {
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      scales: {
+        xAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Years'
+          }
+        }],
+        yAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: '💲 (AUD)'
+          },
+          ticks: {
+            min: 0,
+            max: 100000,
+            stepSize: 5
+          }
+        }]
+      }
     })
   }
 }
