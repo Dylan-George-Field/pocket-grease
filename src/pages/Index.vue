@@ -6,16 +6,19 @@
         :todos="todos"
         :meta="meta"
       ></graph>
+      <earnings></earnings>
   </q-page>
 </template>
 
 <script lang="ts">
 import { Todo, Meta } from 'components/models'
 import graph from 'components/graph.vue'
+import earnings from 'components/earnings.vue'
 import { Vue, Component } from 'vue-property-decorator'
+import Earnings from 'src/components/earnings.vue';
 
 @Component({
-  components: { graph }
+  components: { graph, Earnings }
 })
 export default class PageIndex extends Vue {
   todos: Todo[] = [
