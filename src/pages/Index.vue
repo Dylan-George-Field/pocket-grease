@@ -1,10 +1,12 @@
 <template>
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+  <q-page>
+      <example-component
+        title="Example component"
+        active
+        :todos="todos"
+        :meta="meta"
+      ></example-component>
+  </q-page>
 </template>
 
 <script lang="ts">
