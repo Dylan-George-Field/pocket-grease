@@ -1,21 +1,21 @@
 <template>
   <q-page>
-      <example-component
+      <graph
         title="Example component"
         active
         :todos="todos"
         :meta="meta"
-      ></example-component>
+      ></graph>
   </q-page>
 </template>
 
 <script lang="ts">
 import { Todo, Meta } from 'components/models'
-import ExampleComponent from 'components/ClassComponent.vue'
+import graph from 'components/graph.vue'
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component({
-  components: { ExampleComponent }
+  components: { graph }
 })
 export default class PageIndex extends Vue {
   todos: Todo[] = [
