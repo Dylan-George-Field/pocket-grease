@@ -1,5 +1,3 @@
-
-
 <script>
 import { Line } from 'vue-chartjs'
 
@@ -30,14 +28,10 @@ export default {
             ],
             borderWidth: 1
         }]
-    }, {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+    }, 
+    {
+      responsive: true,
+      maintainAspectRatio: true
     })
   }
 }
