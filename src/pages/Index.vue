@@ -6,7 +6,9 @@
         :todos="todos"
         :meta="meta"
       ></graph>
-      <earnings></earnings>
+      <div class="q-pa-lg">
+        <earnings></earnings>
+      </div>
   </q-page>
 </template>
 

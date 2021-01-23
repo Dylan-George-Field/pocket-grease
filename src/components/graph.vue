@@ -48,8 +48,8 @@ export default {
           },
           ticks: {
             min: 0,
-            max: 100000,
-            stepSize: 5
+            max: 1000000,
+            stepSize: 100000
           }
         }]
       }

@@ -1,7 +1,6 @@
 <template>
   <div>
-  <p>Earnings</p>
-  <q-input v-model="text" label="Income" />
+    <q-input v-model="income" label="Income" type="number" />
   </div>
 </template>
 
@@ -9,7 +8,9 @@
 export default {
   name: 'earnings',
   data () {
-    return {}
+    return {
+      income: 0
+    }
   }
 }
 </script>
