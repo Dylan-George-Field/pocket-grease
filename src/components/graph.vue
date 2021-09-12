@@ -7,7 +7,7 @@ export default {
   props: ['options'],
   watch: {
     chartData (to, from) {
-      console.log('changed')
+
     }
   },
   mounted () {
