@@ -12,6 +12,7 @@ import graph from 'components/graph.vue'
 import { Vue, Component } from 'vue-property-decorator'
 import Income from 'src/models/income'
 import earnings from 'src/components/earnings.vue'
+import { start } from 'repl'
 
 @Component({
   components: { graph, earnings }
@@ -23,14 +24,23 @@ export default class PageIndex extends Vue {
   // eslint-disable-next-line @typescript-eslint/ban-types
   calculateEarnings (income: Income) {
     const parsedIncome = parseInt(income.income)
+    const parsedDeductions = parseInt(income.deductions)
     const parsedStartAge = parseInt(income.startAge)
     this.chartData = {
       labels: this.labels,
       datasets: [{
         label: 'Earnings',
-        data: this.projectOver100Years(parsedIncome, parsedStartAge)
+        data: this.incomeMinusDeductions(parsedIncome, parsedDeductions, parsedStartAge)
       }]
     }
+  }
+
+  private incomeMinusDeductions(amount: number, toDeduct: number, startAge: number): Array<number> {
+    const income = this.projectOver100Years(amount, startAge)
+    const deductions = this.projectOver100Years(toDeduct, startAge)
+    
+    let result = this.deduct(income, deductions)
+    return result
   }
 
   private projectOver100Years (amount: number, startAge: number): Array<number> {
@@ -42,6 +52,14 @@ export default class PageIndex extends Vue {
         return element
     })
     array = array.map((elem, index) => array.slice(0, index + 1).reduce((a, b) => a + b))
+    return array
+  }
+
+  private deduct (income: Array<number>, deductions: Array<number>) {
+    let array = income.map((item, index) =>{
+      return item - deductions[index]
+    })
+    console.log(array)
     return array
   }
 
