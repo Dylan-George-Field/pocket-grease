@@ -8,10 +8,11 @@ export default {
   watch: {
     chartData (to, from) {
       console.log('changed')
-      }
-    },
+    }
+  },
   mounted () {
     // this.chartData is created in the mixin
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     this.renderChart(this.chartData, this.options)
   }
 }

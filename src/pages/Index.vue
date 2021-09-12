@@ -10,7 +10,7 @@
 <script lang="ts">
 import graph from 'components/graph.vue'
 import { Vue, Component } from 'vue-property-decorator'
-import earnings from 'src/components/earnings.vue';
+import earnings from 'src/components/earnings.vue'
 
 @Component({
   components: { graph, earnings }
@@ -29,7 +29,7 @@ export default class PageIndex extends Vue {
     }
   }
 
-  chartData: object = {
+  chartData = {
     labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
     datasets: [{
       label: 'Earnings',
@@ -37,7 +37,7 @@ export default class PageIndex extends Vue {
     }]
   };
 
-  chartOptions: object = {
+  chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
