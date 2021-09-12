@@ -72,6 +72,7 @@ export default class PageIndex extends Vue {
         return element
     })
     array = array.map((elem, index) => array.slice(0, index + 1).reduce((a, b) => a + b))
+    
     return array
   }
 
@@ -83,11 +84,16 @@ export default class PageIndex extends Vue {
   }
 
   private compoundInterest(savings: Array<number>, interest: number) {
-    savings = savings.map((elem, index) => savings.slice(0, index + 1)
-                      .reduce((a, b) => {
-                        return this.getPeriodicCompounding(a, interest/100, 1) + b
-                      }))
-    console.log(savings)
+    savings.forEach((value, index) => {
+      if (index > 24 && index < 65)
+        savings[index] = this.getPeriodicCompounding(value, interest/100, index - 24)
+    })
+    let difference = savings[64] - savings[65]
+    console.log(difference)
+    savings.forEach((value, index) => {
+      if (index >= 65)
+        savings[index] = value + difference
+    })
     return savings
   }
 
