@@ -100,10 +100,9 @@ export default class PageIndex extends Vue {
           display: true,
           labelString: '💲 (AUD)'
         },
+        suggestedMax: 10000000,
         ticks: {
-          min: 0,
-          max: 1000000,
-          stepSize: 100000
+          beginAtZero: true
         }
       }]
     }
