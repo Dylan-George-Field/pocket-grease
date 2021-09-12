@@ -17,23 +17,29 @@ import earnings from 'src/components/earnings.vue'
 })
 export default class PageIndex extends Vue {
   chartDataPoints: Array<number> = [100000, 200000, 400000, 800000, 1600000]
-  calculateEarnings (amount: number) {
-    console.log(this.chartData)
-    console.log('calc')
+
+  calculateEarnings (amount: string) {
+    const parsedInt = parseInt(amount)
     this.chartData = {
       labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
       datasets: [{
         label: 'Earnings',
-        data: this.chartDataPoints
+        data: this.projectOver100Years(parsedInt)
       }]
     }
+  }
+
+  private projectOver100Years (amount: number): Array<number> {
+    let array = new Array<number>(100).fill(amount)
+    array = array.map((elem, index) => array.slice(0, index + 1).reduce((a, b) => a + b))
+    return array
   }
 
   chartData = {
     labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
     datasets: [{
       label: 'Earnings',
-      data: [100000, 200000, 300000, 400000, 500000]
+      data: [0]
     }]
   };
 
