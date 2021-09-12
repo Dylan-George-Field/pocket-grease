@@ -1,53 +1,66 @@
 <template>
   <q-page>
-      <graph
-        title="Example component"
-        active
-        :todos="todos"
-        :meta="meta"
-      ></graph>
+      <graph v-bind:chartData="chartData" :options="chartOptions"></graph>
       <div class="q-pa-lg">
-        <earnings></earnings>
+        <earnings v-on:submit="calculateEarnings"></earnings>
       </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { Todo, Meta } from 'components/models'
 import graph from 'components/graph.vue'
-import earnings from 'components/earnings.vue'
 import { Vue, Component } from 'vue-property-decorator'
-import Earnings from 'src/components/earnings.vue';
+import earnings from 'src/components/earnings.vue';
 
 @Component({
-  components: { graph, Earnings }
+  components: { graph, earnings }
 })
 export default class PageIndex extends Vue {
-  todos: Todo[] = [
-    {
-      id: 1,
-      content: 'ct1'
-    },
-    {
-      id: 2,
-      content: 'ct2'
-    },
-    {
-      id: 3,
-      content: 'ct3'
-    },
-    {
-      id: 4,
-      content: 'ct4'
-    },
-    {
-      id: 5,
-      content: 'ct5'
+  chartDataPoints: Array<number> = [100000, 200000, 400000, 800000, 1600000]
+  calculateEarnings (amount: number) {
+    console.log(this.chartData)
+    console.log('calc')
+    this.chartData = {
+      labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+      datasets: [{
+        label: 'Earnings',
+        data: this.chartDataPoints
+      }]
     }
-  ];
+  }
 
-  meta: Meta = {
-    totalCount: 1200
+  chartData: object = {
+    labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+    datasets: [{
+      label: 'Earnings',
+      data: [100000, 200000, 300000, 400000, 500000]
+    }]
   };
+
+  chartOptions: object = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Years'
+        }
+      }],
+      yAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: '💲 (AUD)'
+        },
+        ticks: {
+          min: 0,
+          max: 1000000,
+          stepSize: 100000
+        }
+      }]
+    }
+  }
 }
 </script>

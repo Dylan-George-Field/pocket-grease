@@ -1,6 +1,7 @@
 <template>
   <div>
-    <q-input v-model="income" label="Income" type="number" />
+    <q-input v-model="income" label="Yearly Income" type="number" />
+    <q-btn v-on:click="$emit('submit', income)" color="primary" label="Primary" />
   </div>
 </template>
 
