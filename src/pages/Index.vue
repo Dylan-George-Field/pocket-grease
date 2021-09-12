@@ -12,39 +12,51 @@ import graph from 'components/graph.vue'
 import { Vue, Component } from 'vue-property-decorator'
 import Income from 'src/models/income'
 import earnings from 'src/components/earnings.vue'
-import { start } from 'repl'
 
 @Component({
   components: { graph, earnings }
 })
 export default class PageIndex extends Vue {
-  chartDataPoints: Array<number> = [100000, 200000, 400000, 800000, 1600000]
-  labels = Array.from(Array(100).keys())
+  labels = Array.from(Array(100).keys()) // 100 years
 
   // eslint-disable-next-line @typescript-eslint/ban-types
   calculateEarnings (income: Income) {
     const parsedIncome = parseInt(income.income)
     const parsedDeductions = parseInt(income.deductions)
     const parsedStartAge = parseInt(income.startAge)
+    const parsedRetirementAge = parseInt(income.retirementAge)
     this.chartData = {
       labels: this.labels,
       datasets: [{
         label: 'Earnings',
-        data: this.incomeMinusDeductions(parsedIncome, parsedDeductions, parsedStartAge)
+        data: this.incomeMinusDeductions(parsedIncome, parsedDeductions, parsedStartAge, parsedRetirementAge)
       }]
     }
   }
 
-  private incomeMinusDeductions(amount: number, toDeduct: number, startAge: number): Array<number> {
-    const income = this.projectOver100Years(amount, startAge)
-    const deductions = this.projectOver100Years(toDeduct, startAge)
+  private incomeMinusDeductions(amount: number, toDeduct: number, startAge: number, retirementAge: number): Array<number> {
+    const income = this.projectIncomeOver100Years(amount, startAge, retirementAge)
+    const deductions = this.projectDeductOver100Years(toDeduct, startAge)
     
     let result = this.deduct(income, deductions)
     return result
   }
 
-  private projectOver100Years (amount: number, startAge: number): Array<number> {
-    let array = new Array<number>(100).fill(amount)
+  private projectIncomeOver100Years (income: number, startAge: number, retirementAge: number): Array<number> {
+    let array = new Array<number>(100).fill(income)
+    console.log(retirementAge)
+    array = array.map((element, index) => {
+      if (index < startAge || index > retirementAge)
+        return 0
+      else
+        return element
+    })
+    array = array.map((elem, index) => array.slice(0, index + 1).reduce((a, b) => a + b))
+    return array
+  }
+
+    private projectDeductOver100Years (income: number, startAge: number): Array<number> {
+    let array = new Array<number>(100).fill(income)
     array = array.map((element, index) => {
       if (index < startAge)
         return 0
