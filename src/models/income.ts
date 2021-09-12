@@ -3,4 +3,5 @@ export default class Income {
     public deductions = '0'
     public startAge = '0'
     public retirementAge = '0'
+    public interest = '0'
 }

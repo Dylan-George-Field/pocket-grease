@@ -25,26 +25,34 @@ export default class PageIndex extends Vue {
     const parsedDeductions = parseInt(income.deductions)
     const parsedStartAge = parseInt(income.startAge)
     const parsedRetirementAge = parseInt(income.retirementAge)
+    const parsedInterest = parseInt(income.interest)
     this.chartData = {
       labels: this.labels,
       datasets: [{
         label: 'Earnings',
-        data: this.incomeMinusDeductions(parsedIncome, parsedDeductions, parsedStartAge, parsedRetirementAge)
+        data: this.incomeMinusDeductions(
+          parsedIncome, 
+          parsedDeductions, 
+          parsedStartAge, 
+          parsedRetirementAge, 
+          parsedInterest)
       }]
     }
   }
 
-  private incomeMinusDeductions(amount: number, toDeduct: number, startAge: number, retirementAge: number): Array<number> {
+  private incomeMinusDeductions(
+    amount: number, toDeduct: number, startAge: number, retirementAge: number, interest: number): Array<number> {
     const income = this.projectIncomeOver100Years(amount, startAge, retirementAge)
     const deductions = this.projectDeductOver100Years(toDeduct, startAge)
     
-    let result = this.deduct(income, deductions)
-    return result
+    let savings = this.deduct(income, deductions)
+    let compoundInterest = this.compoundInterest(savings, interest);
+
+    return compoundInterest
   }
 
   private projectIncomeOver100Years (income: number, startAge: number, retirementAge: number): Array<number> {
     let array = new Array<number>(100).fill(income)
-    console.log(retirementAge)
     array = array.map((element, index) => {
       if (index < startAge || index > retirementAge)
         return 0
@@ -71,8 +79,20 @@ export default class PageIndex extends Vue {
     let array = income.map((item, index) =>{
       return item - deductions[index]
     })
-    console.log(array)
     return array
+  }
+
+  private compoundInterest(savings: Array<number>, interest: number) {
+    savings = savings.map((elem, index) => savings.slice(0, index + 1)
+                      .reduce((a, b) => {
+                        return this.getPeriodicCompounding(a, interest/100, 1) + b
+                      }))
+    console.log(savings)
+    return savings
+  }
+
+  private getPeriodicCompounding(principal: number, interest: number, time: number) {
+    return Math.pow(interest + 1, time) * principal;
   }
 
   chartData = {
