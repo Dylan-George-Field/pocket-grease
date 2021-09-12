@@ -91,7 +91,7 @@ export default class PageIndex extends Vue {
     let difference = savings[64] - savings[65]
     console.log(difference)
     savings.forEach((value, index) => {
-      if (index >= 65)
+      if (index >= 66)
         savings[index] = value + difference
     })
     return savings
