@@ -31,22 +31,22 @@ export default class PageIndex extends Vue {
       datasets: [{
         label: 'Earnings',
         data: this.incomeMinusDeductions(
-          parsedIncome, 
-          parsedDeductions, 
-          parsedStartAge, 
-          parsedRetirementAge, 
+          parsedIncome,
+          parsedDeductions,
+          parsedStartAge,
+          parsedRetirementAge,
           parsedInterest)
       }]
     }
   }
 
-  private incomeMinusDeductions(
+  private incomeMinusDeductions (
     amount: number, toDeduct: number, startAge: number, retirementAge: number, interest: number): Array<number> {
     const income = this.projectIncomeOver100Years(amount, startAge, retirementAge)
     const deductions = this.projectDeductOver100Years(toDeduct, startAge)
-    
-    let savings = this.deduct(income, deductions)
-    let compoundInterest = this.compoundInterest(savings, interest);
+
+    const savings = this.deduct(income, deductions)
+    const compoundInterest = this.compoundInterest(savings, interest)
 
     return compoundInterest
   }
@@ -54,51 +54,55 @@ export default class PageIndex extends Vue {
   private projectIncomeOver100Years (income: number, startAge: number, retirementAge: number): Array<number> {
     let array = new Array<number>(100).fill(income)
     array = array.map((element, index) => {
-      if (index < startAge || index > retirementAge)
+      if (index < startAge || index > retirementAge) {
         return 0
-      else
+      } else {
         return element
+      }
     })
     array = array.map((elem, index) => array.slice(0, index + 1).reduce((a, b) => a + b))
     return array
   }
 
-    private projectDeductOver100Years (income: number, startAge: number): Array<number> {
+  private projectDeductOver100Years (income: number, startAge: number): Array<number> {
     let array = new Array<number>(100).fill(income)
     array = array.map((element, index) => {
-      if (index < startAge)
+      if (index < startAge) {
         return 0
-      else
+      } else {
         return element
+      }
     })
     array = array.map((elem, index) => array.slice(0, index + 1).reduce((a, b) => a + b))
-    
+
     return array
   }
 
   private deduct (income: Array<number>, deductions: Array<number>) {
-    let array = income.map((item, index) =>{
+    const array = income.map((item, index) => {
       return item - deductions[index]
     })
     return array
   }
 
-  private compoundInterest(savings: Array<number>, interest: number) {
+  private compoundInterest (savings: Array<number>, interest: number) {
     savings.forEach((value, index) => {
-      if (index > 24 && index < 65)
-        savings[index] = this.getPeriodicCompounding(value, interest/100, index - 24)
+      if (index > 24 && index < 65) {
+        savings[index] = this.getPeriodicCompounding(value, interest / 100, index - 24)
+      }
     })
-    let difference = savings[64] - savings[65]
+    const difference = savings[64] - savings[65]
     console.log(difference)
     savings.forEach((value, index) => {
-      if (index >= 66)
+      if (index >= 65) {
         savings[index] = value + difference
+      }
     })
     return savings
   }
 
-  private getPeriodicCompounding(principal: number, interest: number, time: number) {
-    return Math.pow(interest + 1, time) * principal;
+  private getPeriodicCompounding (principal: number, interest: number, time: number) {
+    return Math.pow(interest + 1, time) * principal
   }
 
   chartData = {
