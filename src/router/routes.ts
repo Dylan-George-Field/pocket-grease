@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/named
 import { RouteConfig } from 'vue-router'
 
 const routes: RouteConfig[] = [

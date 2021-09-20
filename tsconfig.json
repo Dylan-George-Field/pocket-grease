@@ -1,8 +1,12 @@
 {
   "extends": "@quasar/app/tsconfig-preset",
+  "include": ["src"],
   "compilerOptions": {
     "baseUrl": ".",
     "experimentalDecorators": true,
     "target": "es5"
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
