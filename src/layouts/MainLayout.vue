@@ -25,18 +25,28 @@
       bordered
       content-class="bg-grey-1"
     >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
+      <q-list padding>
+        <q-item-section>
+          <q-item-label header class="text-grey-8">
+            Wominjeka (Welcome)
+          </q-item-label>
+          <q-item-label caption class="q-px-md q-pb-md">
+            <p>
+              Use this tool to model and plan your financial future.
+            </p>
+            <p>
+              The graph will help visualise the path you're on and how/if
+               you can meet your financial goals.
+            </p>
+            <p>
+              Find out if you can afford a house, travel the world and retire comfortably!
+            </p>
+          </q-item-label>
+          </q-item-section>
+          <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
+        <q-item-label header class="text-grey-8 absolute-bottom" caption>
+          <p>I acknowledge the traditional owners of the land I stand 🦘</p>
         </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
       </q-list>
     </q-drawer>
 
@@ -51,46 +61,22 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
   {
-    title: 'Docs',
+    title: 'Made with quasar',
     caption: 'quasar.dev',
     icon: 'school',
     link: 'https://quasar.dev'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
+    title: 'Hosted on github',
+    caption: 'github.com/pocket-grease',
     icon: 'code',
-    link: 'https://github.com/quasarframework'
+    link: 'https://github.com/dylan-george-field/pocket-grease'
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
+    title: 'Feedback',
+    caption: 'dylan.george.field@gmail.com',
     icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+    link: 'mailto:dylan.george.field+pocket-gease@gmail.com'
   }
 ]
 
