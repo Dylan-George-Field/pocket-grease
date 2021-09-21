@@ -2,7 +2,6 @@
   <q-page>
       <graph v-bind:chartData="chartData" :options="chartOptions"></graph>
       <div class="q-pa-lg">
-        <graph-toggles></graph-toggles>
         <earnings v-on:submit="calculateEarnings"></earnings>
       </div>
   </q-page>
@@ -13,10 +12,9 @@ import graph from 'components/graph.vue'
 import { Vue, Component } from 'vue-property-decorator'
 import Income from 'src/models/income'
 import earnings from 'src/components/earnings.vue'
-import GraphToggles from 'src/components/graphToggles.vue'
 
 @Component({
-  components: { graph, earnings, GraphToggles }
+  components: { graph, earnings }
 })
 export default class PageIndex extends Vue {
   labels = Array.from(Array(100).keys()) // 100 years

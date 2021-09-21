@@ -44,6 +44,7 @@
           </q-item-label>
           </q-item-section>
           <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
+          <graph-toggles />
         <q-item-label header class="text-grey-8 absolute-bottom" caption>
           <p>I acknowledge the traditional owners of the land I stand 🦘</p>
         </q-item-label>
@@ -81,9 +82,10 @@ const linksData = [
 ]
 
 import { Vue, Component } from 'vue-property-decorator'
+import GraphToggles from 'src/components/graphToggles.vue'
 
 @Component({
-  components: { EssentialLink }
+  components: { EssentialLink, GraphToggles }
 })
 export default class MainLayout extends Vue {
   leftDrawerOpen = false;

@@ -1,12 +1,27 @@
 <template>
   <div>
-    Graph Toggles:
-    <q-toggle v-model="value" label="income" />
-    <q-toggle v-model="value" label="expenses" />
-    <q-toggle v-model="value" label="interest vs no interest" />
-    <q-toggle v-model="value" label="interest vs no interest" />
-    <q-toggle v-model="value" label="superannuation" />
-    <q-toggle v-model="value" label="taxes" />
+    <q-item>
+      Toggles
+    </q-item>
+    <q-item>
+        <q-toggle v-model="value" label="income" />
+    </q-item>
+    <q-item>
+      <q-toggle v-model="value" label="expenses" />
+    </q-item>
+    <q-item>
+      <q-toggle v-model="value" label="interest vs no interest" />
+    </q-item>
+    <q-item>
+      <q-toggle v-model="value" label="interest vs no interest" />
+    </q-item>
+    <q-item>
+      <q-toggle v-model="value" label="superannuation" />
+    </q-item>
+    <q-item>
+      <q-toggle v-model="value" label="taxes" />
+    </q-item>
+  </q-item>
   </div>
 </template>
 
