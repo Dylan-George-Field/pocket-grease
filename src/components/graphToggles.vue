@@ -21,7 +21,6 @@
     <q-item>
       <q-toggle v-model="value" label="taxes" />
     </q-item>
-  </q-item>
   </div>
 </template>
 
