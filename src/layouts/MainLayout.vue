@@ -16,6 +16,7 @@
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
+        <q-btn color="red" class="q-ml-md" @click="calculate()">Calculate</q-btn>
       </q-toolbar>
     </q-header>
 
@@ -90,5 +91,9 @@ import GraphToggles from 'src/components/graphToggles.vue'
 export default class MainLayout extends Vue {
   leftDrawerOpen = false;
   essentialLinks = linksData;
+
+  private calculate () {
+    alert('calculate')
+  }
 }
 </script>

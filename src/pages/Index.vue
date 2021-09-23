@@ -1,8 +1,8 @@
 <template>
   <q-page>
-      <graph v-bind:chartData="chartData" :options="chartOptions"></graph>
+      <graph v-bind:chartData="chartData" :options="chartOptions" />
       <div class="q-pa-lg">
-        <earnings v-on:submit="calculateEarnings"></earnings>
+        <earnings v-on:submit="calculateEarnings" />
       </div>
   </q-page>
 </template>
@@ -26,10 +26,12 @@ export default class PageIndex extends Vue {
     const parsedStartAge = parseInt(income.startAge)
     const parsedRetirementAge = parseInt(income.retirementAge)
     const parsedInterest = parseInt(income.interest)
+
     this.chartData = {
       labels: this.labels,
       datasets: [{
         label: 'Earnings',
+        backgroundColor: 'rgba(255, 0, 0, 0.1)',
         data: this.incomeMinusDeductions(
           parsedIncome,
           parsedDeductions,

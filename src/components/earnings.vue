@@ -1,14 +1,20 @@
 <template>
   <div>
-    <h5 class="q-my-none">Income</h5>
-    <q-input v-model="income" label="Yearly Income" type="number" />
-    <q-input v-model="startAge" label="Start Age" type=number />
-    <q-input v-model="retirementAge" label="Retirement Age" type="number" />
-    <q-input v-model="interest" label="Savings Interest %" type="number" />
-    <h5 class="q-mb-none">Deductions</h5>
-    <q-input v-model="incomeTax" label="Income Tax %" type="number" />
-    <q-input v-model="deductions" label="Yearly Deductions" type="number" />
-    <q-btn v-on:click="$emit('submit', { income, deductions, startAge, retirementAge, interest })" color="primary" label="Calculate" class="q-mt-md" />
+    <div class="row items-start q-gutter-lg">
+      <div class="col">
+        <h5 class="q-my-none">Income</h5>
+        <q-input v-model="income" label="Yearly Income" type="number" />
+        <q-input v-model="startAge" label="Start Age" type=number />
+        <q-input v-model="retirementAge" label="Retirement Age" type="number" />
+        <q-input v-model="interest" label="Savings Interest %" type="number" />
+      </div>
+      <div class="col">
+        <h5 class="q-mb-none">Deductions</h5>
+        <q-input v-model="incomeTax" label="Income Tax %" type="number" />
+        <q-input v-model="deductions" label="Yearly Deductions" type="number" />
+        <q-btn v-on:click="$emit('submit', { income, deductions, startAge, retirementAge, interest })" color="primary" label="Calculate" class="q-mt-md" />
+      </div>
+    </div>
   </div>
 </template>
 
