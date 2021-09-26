@@ -2,6 +2,8 @@
 
 A lifetime earnings calculator 🥓
 
+https://www.pocketgrease.com.au
+
 ## Install the dependencies
 ```bash
 yarn
