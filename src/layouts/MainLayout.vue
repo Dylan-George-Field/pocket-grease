@@ -8,7 +8,7 @@
           round
           icon="menu"
           aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
+          @click="toggleLeftDrawer"
         />
 
         <q-toolbar-title>
@@ -16,7 +16,7 @@
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
-        <q-btn color="red" class="q-ml-md" @click="calculate()">Calculate</q-btn>
+        <q-btn color="red" class="q-ml-md">Calculate</q-btn>
       </q-toolbar>
     </q-header>
 
@@ -24,7 +24,6 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      content-class="bg-grey-1"
     >
       <q-list padding>
         <q-item-section>
@@ -33,19 +32,19 @@
           </q-item-label>
           <q-item-label caption class="q-px-md q-pb-md">
             <p>
-              Use this tool to model and plan your financial future.
+              Use this tool to model and plan your financial life.
             </p>
             <p>
-              The graph will help visualise the path you're on and how/if
-               you can meet your financial goals.
+              It will help you visualise a path to help achieve your goals. Perhaps you
+              would like to buy a house or start a family and are unsure if you can afford to.
             </p>
             <p>
-              Find out if you can afford a house, travel the world and retire comfortably!
+              Fill in the form and hit calculate!
             </p>
           </q-item-label>
           </q-item-section>
           <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
-          <graph-toggles />
+          <!-- <graph-toggles /> -->
         <q-item-label header class="text-grey-8 absolute-bottom" caption>
           <p>I acknowledge the traditional owners of the land I stand 🦘</p>
         </q-item-label>
@@ -61,7 +60,7 @@
 <script lang="ts">
 import EssentialLink from 'components/EssentialLink.vue'
 
-const linksData = [
+const linksList = [
   {
     title: 'Made with quasar',
     caption: 'quasar.dev',
@@ -80,20 +79,28 @@ const linksData = [
     icon: 'chat',
     link: 'mailto:dylan.george.field+pocket-gease@gmail.com'
   }
-]
 
-import { Vue, Component } from 'vue-property-decorator'
-import GraphToggles from 'src/components/graphToggles.vue'
+];
 
-@Component({
-  components: { EssentialLink, GraphToggles }
-})
-export default class MainLayout extends Vue {
-  leftDrawerOpen = false;
-  essentialLinks = linksData;
+import { defineComponent, ref } from 'vue'
 
-  private calculate () {
-    alert('calculate')
+export default defineComponent({
+  name: 'MainLayout',
+
+  components: {
+    EssentialLink
+  },
+
+  setup () {
+    const leftDrawerOpen = ref(false)
+
+    return {
+      essentialLinks: linksList,
+      leftDrawerOpen,
+      toggleLeftDrawer () {
+        leftDrawerOpen.value = !leftDrawerOpen.value
+      }
+    }
   }
-}
+})
 </script>

@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div class="row items-start q-gutter-lg">
+    <div class="row items-start q-gutter-lg earnings">
       <div class="col">
         <h5 class="q-my-none">Income</h5>
         <q-input v-model="income" label="Yearly Income" type="number" />
@@ -15,7 +14,6 @@
         <q-btn v-on:click="$emit('submit', { income, deductions, startAge, retirementAge, interest })" color="primary" label="Calculate" class="q-mt-md" />
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -47,3 +45,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .earnings {
+    align-items: baseline;
+  }
+</style>
