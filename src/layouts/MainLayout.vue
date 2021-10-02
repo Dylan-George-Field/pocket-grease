@@ -107,12 +107,8 @@ export default defineComponent({
 
     const $store = useStore()
 
-    console.log($store)
-
     const calculate = function() {
-      console.log('calculate!')
       $store.dispatch('graph/calculate')
-      console.log($store.state.graph.calculate)
     }
 
     return {

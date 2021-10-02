@@ -56,8 +56,6 @@ export default {
     });
 
     const calculateEarnings = function(income: Income) {
-      console.log('event heard!')
-      console.log(income)
       const parsedIncome = parseInt(income.income)
       const parsedDeductions = parseInt(income.deductions)
       const parsedStartAge = parseInt(income.startAge)

@@ -31,7 +31,6 @@ export default {
     const store = useStore()
 
     store.watch((state, getters) => state.graph.calculate, (value) => {
-      console.log('state change')
       context.emit('submit', { income: income.value, deductions: deductions.value, startAge: startAge.value, retirementAge: retirementAge.value, interest: interest.value })
     })
 
