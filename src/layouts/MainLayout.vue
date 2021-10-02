@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh lpR lff">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -15,7 +15,6 @@
           Pocket Grease
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
         <q-btn color="red" class="q-ml-md">Calculate</q-btn>
       </q-toolbar>
     </q-header>
@@ -54,6 +53,17 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <q-footer>
+      <q-toolbar class="justify-center">
+        <div>
+        <p>
+          2021 - Quasar v{{ $q.version }}<br />
+        </p>
+        </div>
+      </q-toolbar>
+    </q-footer>
+
   </q-layout>
 </template>
 
@@ -104,3 +114,10 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped lang="sass">
+footer
+  background-color: white
+  color: $input-label-color
+  font-size: $tooltip-fontsize
+</style>
