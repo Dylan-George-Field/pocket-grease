@@ -1,10 +1,10 @@
 export interface ExampleStateInterface {
-  prop: boolean;
+  calculate: boolean;
 }
 
 function state(): ExampleStateInterface {
   return {
-    prop: false
+    calculate: false
   }
 };
 

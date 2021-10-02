@@ -11,7 +11,7 @@
 <script lang='ts'>
 import { computed, ref } from 'vue';
 import { LineChart, useLineChart } from 'vue-chart-3';
-import { Chart, ChartData, ChartOptions, registerables, Ticks } from 'chart.js';
+import { Chart, ChartData, ChartOptions, registerables } from 'chart.js';
 import Income from 'src/models/income'
 import earnings from 'src/components/earnings.vue'
 
