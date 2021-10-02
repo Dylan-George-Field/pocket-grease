@@ -15,7 +15,7 @@
           Pocket Grease
         </q-toolbar-title>
 
-        <q-btn color="red" class="q-ml-md">Calculate</q-btn>
+        <q-btn color="red" class="q-ml-md" @click="calculate">Calculate</q-btn>
       </q-toolbar>
     </q-header>
 
@@ -107,10 +107,16 @@ export default defineComponent({
 
     const $store = useStore()
 
-    console.log('accessing store')
-    console.log($store.state.graph.calculate)
+    console.log($store)
+
+    const calculate = function() {
+      console.log('calculate!')
+      $store.dispatch('graph/calculate')
+      console.log($store.state.graph.calculate)
+    }
 
     return {
+      calculate,
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer () {

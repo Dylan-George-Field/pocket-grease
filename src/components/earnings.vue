@@ -11,36 +11,51 @@
         <h5 class="q-mb-none">Deductions</h5>
         <q-input v-model="incomeTax" label="Income Tax %" type="number" />
         <q-input v-model="deductions" label="Yearly Deductions" type="number" />
-        <q-btn v-on:click="$emit('submit', { income, deductions, startAge, retirementAge, interest })" color="primary" label="Calculate" class="q-mt-md" />
       </div>
     </div>
 </template>
 
 <script>
+import { useStore } from 'vuex'
+import { computed, ref } from 'vue';
+
 export default {
   name: 'earnings',
-  data () {
-    return {
-      income: 60000,
-      deductions: 50000,
-      startAge: 25,
-      retirementAge: 65,
-      interest: 2
-    }
-  },
-  computed: {
-    incomeTax () {
-      if (this.income < 18200) {
+  setup(props, context) {
+    const income = ref(60000)
+    const deductions = ref(50000)
+    const startAge = ref(25)
+    const retirementAge = ref(65)
+    const interest = ref(2)
+
+    const store = useStore()
+
+    store.watch((state, getters) => state.graph.calculate, (value) => {
+      console.log('state change')
+      context.emit('submit', { income: income.value, deductions: deductions.value, startAge: startAge.value, retirementAge: retirementAge.value, interest: interest.value })
+    })
+
+    const incomeTax = computed(() => {
+      if (income.value < 18200) {
         return 0
-      } else if (this.income > 18201 && this.income < 37000) {
+      } else if (income.value > 18201 && income.value < 37000) {
         return 19
-      } else if (this.income > 37001 && this.income < 90000) {
+      } else if (income.value > 37001 && income.value < 90000) {
         return 32
-      } else if (this.income > 90001 && this.income < 180000) {
+      } else if (income.value > 90001 && income.value < 180000) {
         return 37
       } else {
         return 45
       }
+    })
+
+    return {
+      income,
+      deductions,
+      startAge,
+      retirementAge,
+      interest,
+      incomeTax
     }
   }
 }
