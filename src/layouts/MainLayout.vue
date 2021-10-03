@@ -108,7 +108,7 @@ export default defineComponent({
     const $store = useStore()
 
     const calculate = function() {
-      $store.dispatch('graph/calculate')
+      void $store.dispatch('graph/calculate')
     }
 
     return {

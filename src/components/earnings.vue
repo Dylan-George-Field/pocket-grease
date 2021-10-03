@@ -30,9 +30,13 @@ export default {
 
     const store = useStore()
 
-    store.watch((state, getters) => state.graph.calculate, (value) => {
-      context.emit('submit', { income: income.value, deductions: deductions.value, startAge: startAge.value, retirementAge: retirementAge.value, interest: interest.value })
+    store.watch((state) => state.graph.calculate, () => {
+      fireCalculateEvent()
     })
+
+    const fireCalculateEvent = function () {
+      context.emit('submit', { income: income.value, deductions: deductions.value, startAge: startAge.value, retirementAge: retirementAge.value, interest: interest.value })
+    }
 
     const incomeTax = computed(() => {
       if (income.value < 18200) {
