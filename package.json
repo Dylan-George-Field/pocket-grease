@@ -10,10 +10,12 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@quasar/cli": "^1.2.1",
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
     "chart.js": "^3.5.1",
     "core-js": "^3.6.5",
+    "global": "^4.4.0",
     "quasar": "^2.0.0",
     "vue-chart-3": "^0.5.8",
     "vue-i18n": "^9.0.0",

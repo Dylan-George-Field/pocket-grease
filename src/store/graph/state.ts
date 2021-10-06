@@ -3,6 +3,7 @@ export default function () {
     calculate: false,
     total: [],
     income: [],
-    deductions: []
+    deductions: [],
+    savings: []
   }
 }
