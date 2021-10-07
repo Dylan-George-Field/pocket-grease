@@ -28,16 +28,28 @@ export default {
   setup() {
     const store = useStore()
 
-    const dataValues = ref([0]) // new Array(100).fill(0));
+    const total = ref([0])
+    const savings = ref([0])
+    const deductions = ref([0])
 
     var testData = computed<ChartData<'line'>>(() => ({
       labels: Array.from(Array(100).keys()), // x axis data points (100 years)
       datasets: [
         {
-          backgroundColor: 'rgba(255, 0, 0, 0.1)',
-          label: 'Earnings',
-          data: dataValues.value,
+          backgroundColor: 'rgba(0, 255, 0, 0.1)',
+          label: 'Total',
+          data: total.value,
         },
+        {
+          backgroundColor: 'rgba(0, 0, 255, 0.1)',
+          label: 'Savings',
+          data: savings.value
+        },
+        {
+          backgroundColor: 'rgba(255, 0, 0, 0.1)',
+          label: 'Deductions',
+          data: deductions.value
+        }
       ],
     }));
 
@@ -67,7 +79,9 @@ export default {
       void store.dispatch('graph/deduct')
       void store.dispatch('graph/compoundInterest', income)
 
-      dataValues.value = store.state.graph.total
+      total.value = store.state.graph.total
+      savings.value = store.state.graph.savings
+      deductions.value = store.state.graph.deductions
     }
 
     return {
