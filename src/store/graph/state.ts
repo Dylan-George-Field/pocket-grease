@@ -1,7 +1,7 @@
 export default function () {
   return {
     calculate: false,
-    showSavings: true,
+    savingsToggle: false,
     total: [],
     income: [],
     deductions: [],

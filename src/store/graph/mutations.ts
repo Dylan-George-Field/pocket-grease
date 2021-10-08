@@ -1,12 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
 import Income from 'src/models/income'
 
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 export function calculate (state: { calculate: boolean; }) {
     state.calculate = !state.calculate
+}
+
+export function savingsToggle(state: { savingsToggle: boolean }) {
+    state.savingsToggle = !state.savingsToggle
+    console.log('mutation: ' + state.savingsToggle.toString())
 }
 
 export function projectIncomeOver100Years (state: any, payload: Income): void {

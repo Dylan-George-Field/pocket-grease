@@ -1,10 +1,12 @@
 export interface ExampleStateInterface {
   calculate: boolean;
+  savingsToggle: boolean;
 }
 
 function state(): ExampleStateInterface {
   return {
-    calculate: false
+    calculate: false,
+    savingsToggle: true
   }
 };
 

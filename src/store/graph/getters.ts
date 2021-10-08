@@ -15,6 +15,6 @@ export function deductions (state: { deductions: []; }) {
     return state.deductions;
 }
 
-export function showSavings (state: { showSavings: boolean }) {
-    return state.showSavings;
+export function toggleSavings (state: { toggleSavings: boolean }) {
+    return state.toggleSavings;
 }

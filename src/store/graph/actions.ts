@@ -7,6 +7,10 @@ export function calculate (context: { commit: (arg0: string) => void }) {
     context.commit('calculate')
 }
 
+export function savingsToggle (context: { commit: (arg0: string) => void }) {
+    context.commit('savingsToggle')
+}
+
 export function projectIncomeOver100Years (context: { commit: (arg0: string, arg1: Income) => void }, income: Income) {
     context.commit('projectIncomeOver100Years', income)
 }
