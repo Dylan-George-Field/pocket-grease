@@ -2,9 +2,9 @@
   <div>
     <LineChart v-bind="lineChartProps" />
     <div class="q-pa-lg form">
+      <toggles />
       <earnings v-on:submit="calculateEarnings" />
     </div>
-
   </div>
 </template>
 

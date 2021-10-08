@@ -49,18 +49,18 @@ export function compoundInterest (state: any, payload: Income): void {
     const temp = state.savings.map((x: number) => x)
 
     temp.forEach((value: number, index: number) => {
-      if (index > 24 && index < 65) {
-        temp[index] = getPeriodicCompounding(value, parseInt(payload.interest) / 100, index - 24)
+      if (index >= parseInt(payload.startAge) && index < parseInt(payload.retirementAge)) {
+        temp[index] = getPeriodicCompounding(value, parseInt(payload.interest) / 100, index - parseInt(payload.startAge) - 1)
       }
     })
-    const difference = temp[64] - temp[65]
+    const difference = temp[parseInt(payload.retirementAge) - 1] - temp[parseInt(payload.retirementAge)]
 
     temp.forEach((value:number, index:number) => {
-      if (index >= 65) {
+      if (index >= parseInt(payload.retirementAge)) {
         temp[index] = value + difference
       }
     })
-    
+
     state.total = temp
   }
 

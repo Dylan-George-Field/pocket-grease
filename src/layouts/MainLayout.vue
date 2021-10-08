@@ -43,7 +43,8 @@
           </q-item-label>
           </q-item-section>
           <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
-          <!-- <graph-toggles /> -->
+          <q-separator class="q-my-lg" />
+          <toggles />
         <q-item-label header class="text-grey-8 absolute-bottom" caption>
           <p>I acknowledge the traditional owners of the land I stand 🦘</p>
         </q-item-label>
@@ -94,14 +95,14 @@ const linksList = [
 
 import { defineComponent, ref } from 'vue'
 import { useStore } from 'vuex'
+import toggles from 'src/components/toggles.vue'
 
 export default defineComponent({
   name: 'MainLayout',
-
   components: {
-    EssentialLink
+    EssentialLink,
+    toggles
   },
-
   setup () {
     const leftDrawerOpen = ref(false)
 
@@ -114,6 +115,7 @@ export default defineComponent({
     return {
       calculate,
       essentialLinks: linksList,
+      toggles,
       leftDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value

@@ -14,3 +14,7 @@ export function income (state: { income: Income; }) {
 export function deductions (state: { deductions: []; }) {
     return state.deductions;
 }
+
+export function showSavings (state: { showSavings: boolean }) {
+    return state.showSavings;
+}
