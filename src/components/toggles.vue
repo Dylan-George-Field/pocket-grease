@@ -1,10 +1,10 @@
 <template>
   <div>
+    <q-item-label caption class="q-px-sm">
+      There's a bug that won't re-show the graph (refresh instead)
+    </q-item-label>
     <q-item>
-              There's a bug that won't re-show the graph (refresh instead)
-    </q-item>
-    <q-item>
-        <q-toggle v-model="toggleSavings" :false-value="true" :true-value="false" label="savings" />
+      <q-toggle v-model="toggleSavings" :false-value="true" :true-value="false" label="savings" />
     </q-item>
   </div>
 </template>
