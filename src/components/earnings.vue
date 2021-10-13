@@ -11,13 +11,15 @@
         <h5 class="q-mb-none">Deductions</h5>
         <q-input v-model="incomeTax" label="Income Tax %" type="number" />
         <q-input v-model="deductions" label="Yearly Deductions" type="number" />
+        <q-btn color="primary" label="Save" @click="save" />
       </div>
     </div>
 </template>
 
 <script>
 import { useStore } from 'vuex'
-import { computed, ref } from 'vue';
+import { computed, ref } from 'vue'
+import Task from 'src/models/task'
 
 export default {
   name: 'earnings',
@@ -38,6 +40,11 @@ export default {
       context.emit('submit', { income: income.value, deductions: deductions.value, startAge: startAge.value, retirementAge: retirementAge.value, interest: interest.value })
     }
 
+    const save = function() {
+      console.log('a new task!')
+      store.dispatch('graph/setTask', new Task('a new task!'))
+    }
+
     const incomeTax = computed(() => {
       if (income.value < 18200) {
         return 0
@@ -53,6 +60,7 @@ export default {
     })
 
     return {
+      save,
       income,
       deductions,
       startAge,

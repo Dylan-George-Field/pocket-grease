@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
 import Income from 'src/models/income'
+import Task from 'src/models/task'
 
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 export function calculate (context: { commit: (arg0: string) => void }) {
@@ -25,4 +26,12 @@ export function deduct (context: { commit: (arg0: string) => void }) {
 
 export function compoundInterest (context: { commit: (arg0: string, arg1: Income) => void }, income: Income) {
     context.commit('compoundInterest', income)
+}
+
+export function setTask(context: { commit: (arg0: string, arg1: Task) => void }, task: Task) {
+    context.commit('setTask', task)
+}
+
+export function deleteTask(context: { commit: (arg0: string, arg1: Task) => void }, task: Task) {
+    context.commit('setTask', task)
 }
