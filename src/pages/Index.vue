@@ -2,7 +2,14 @@
   <div>
     <LineChart v-bind="lineChartProps" />
     <div class="q-pa-lg form">
-      <earnings v-on:submit="calculateEarnings" />
+      <div class="row">
+        <div class="col-4">
+          <pocket-list />
+        </div>
+        <div>
+          <earnings v-on:submit="calculateEarnings" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -17,14 +24,16 @@ import { Chart, ChartData, ChartOptions, registerables } from 'chart.js';
 import Income from 'src/models/income'
 import earnings from 'src/components/earnings.vue'
 import { useStore } from 'vuex'
+import PocketList from 'src/components/pocketList.vue';
 
 Chart.register(...registerables);
 
 export default {
   name: 'App',
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  components: { LineChart, earnings },
+  components: { LineChart, earnings, PocketList },
   setup() {
+   
     const store = useStore()
 
     const total = ref([0])

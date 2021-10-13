@@ -10,6 +10,9 @@
 </template>
 
 <script>
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import { useStore } from 'vuex'
 import { defineComponent, computed } from 'vue'
 

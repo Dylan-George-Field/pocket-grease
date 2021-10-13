@@ -1,3 +1,5 @@
+import Task from 'src/models/task'
+
 export default function () {
   return {
     calculate: false,
@@ -5,6 +7,14 @@ export default function () {
     total: [],
     income: [],
     deductions: [],
-    savings: []
+    savings: [],
+    tasks: [
+      {
+        name: 'First Task'
+      }, 
+      {
+        name: 'Second Task'
+      }
+    ] as Task[]
   }
 }

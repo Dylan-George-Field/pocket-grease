@@ -4,6 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
 import Income from 'src/models/income'
+import Task from 'src/models/task'
 
 export function calculate (state: { calculate: boolean; }) {
     state.calculate = !state.calculate
@@ -72,3 +73,12 @@ export function compoundInterest (state: any, payload: Income): void {
   const getPeriodicCompounding = function (principal: number, interest: number, time: number) {
     return Math.pow(interest + 1, time) * principal
   }
+
+export function setTask (state: any, task: Task): void {
+  state.tasks.push(task)
+}
+
+export function deleteTask (state: any, task: Task): void {
+  let taskIndex = state.tasks.find(state.tasks, task)
+  state.tasks.splice(taskIndex, ++taskIndex)
+}
