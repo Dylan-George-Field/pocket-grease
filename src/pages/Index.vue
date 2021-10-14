@@ -17,6 +17,7 @@
 <script lang='ts'>
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 
 import { computed, ref } from 'vue';
 import { LineChart, useLineChart } from 'vue-chart-3';
@@ -84,6 +85,12 @@ export default {
       chartData: testData,
       options,
     });
+
+    store.watch((state) => state.graph.calculate, () => {
+      const income = store.state.graph.tasks[0]
+      if (income)
+        calculateEarnings(income)
+    })
 
     const calculateEarnings = function(income: Income) {
       void store.dispatch('graph/projectIncomeOver100Years', income)

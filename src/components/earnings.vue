@@ -32,14 +32,6 @@ export default {
 
     const store = useStore()
 
-    store.watch((state) => state.graph.calculate, () => {
-      fireCalculateEvent()
-    })
-
-    const fireCalculateEvent = function () {
-      context.emit('submit', { income: income.value, deductions: deductions.value, startAge: startAge.value, retirementAge: retirementAge.value, interest: interest.value })
-    }
-
     const save = function() {
       store.dispatch('graph/setTask', new Task('Basic Task', income.value, deductions.value, startAge.value, retirementAge.value, interest.value))
     }
