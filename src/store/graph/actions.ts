@@ -33,5 +33,5 @@ export function setTask(context: { commit: (arg0: string, arg1: Task) => void },
 }
 
 export function deleteTask(context: { commit: (arg0: string, arg1: Task) => void }, task: Task) {
-    context.commit('setTask', task)
+    context.commit('deleteTask', task)
 }

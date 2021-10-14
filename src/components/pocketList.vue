@@ -5,6 +5,9 @@
   <q-list v-for="task in tasks" :key="task.name">
     <q-item clickable>
       {{task.name}}
+      <q-item-section top side>
+        <q-btn class="gt-xs" size="12px" flat dense round icon="delete" @click="deleteTask(task)" />
+      </q-item-section>
     </q-item>
   </q-list>
 </template>
@@ -32,7 +35,8 @@ export default {
     }
 
     return {
-      tasks
+      tasks,
+      deleteTask
     }
   }
 }

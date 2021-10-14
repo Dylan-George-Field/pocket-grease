@@ -41,8 +41,7 @@ export default {
     }
 
     const save = function() {
-      console.log('a new task!')
-      store.dispatch('graph/setTask', new Task('a new task!'))
+      store.dispatch('graph/setTask', new Task('Basic Task', income.value, deductions.value, startAge.value, retirementAge.value, interest.value))
     }
 
     const incomeTax = computed(() => {

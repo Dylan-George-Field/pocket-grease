@@ -79,6 +79,6 @@ export function setTask (state: any, task: Task): void {
 }
 
 export function deleteTask (state: any, task: Task): void {
-  let taskIndex = state.tasks.find(state.tasks, task)
-  state.tasks.splice(taskIndex, ++taskIndex)
+  const result = state.tasks.findIndex((x: Task) => x === task)
+  state.tasks.splice(result, 1)
 }
