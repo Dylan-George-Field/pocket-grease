@@ -90,7 +90,16 @@ export default {
       const income = store.state.graph.tasks[0]
       if (income)
         calculateEarnings(income)
+      else
+        clearCanvas()
     })
+
+    const clearCanvas = function() {
+      console.log('clear canvas')
+      total.value = [0]
+      savings.value = [0]
+      deductions.value = [0]
+    }
 
     const calculateEarnings = function(income: Income) {
       void store.dispatch('graph/projectIncomeOver100Years', income)
