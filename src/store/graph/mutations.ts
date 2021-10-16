@@ -74,8 +74,6 @@ export function compoundInterest (state: any, payload: Income): void {
   }
 
 export function setTask (state: any, task: Task): void {
-  console.log('setTask')
-  console.log(task)
   state.tasks.push(task)
 }
 

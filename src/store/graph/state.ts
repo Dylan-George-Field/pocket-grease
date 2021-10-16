@@ -8,13 +8,6 @@ export default function () {
     income: [],
     deductions: [],
     savings: [],
-    tasks: [
-      {
-        name: 'First Task'
-      }, 
-      {
-        name: 'Second Task'
-      }
-    ] as Task[]
+    tasks: [] as Task[]
   }
 }

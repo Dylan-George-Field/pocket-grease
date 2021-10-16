@@ -9,6 +9,7 @@
         <div>
           <earnings v-on:submit="calculateEarnings" />
           <basic-income />
+          <basic-deduction />
         </div>
       </div>
     </div>
@@ -20,20 +21,21 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 
-import { computed, ref } from 'vue';
-import { LineChart, useLineChart } from 'vue-chart-3';
-import { Chart, ChartData, ChartOptions, registerables } from 'chart.js';
+import { computed, ref } from 'vue'
+import { LineChart, useLineChart } from 'vue-chart-3'
+import { Chart, ChartData, ChartOptions, registerables } from 'chart.js'
 import Income from 'src/models/income'
 import earnings from 'src/components/earnings.vue'
 import { useStore } from 'vuex'
-import PocketList from 'src/components/pocketList.vue';
-import BasicIncome from 'src/components/basic-income.vue';
+import PocketList from 'src/components/pocketList.vue'
+import BasicIncome from 'src/components/basic-income.vue'
+import BasicDeduction from 'src/components/basic-deduction.vue'
 
 Chart.register(...registerables);
 
 export default {
   name: 'App',
-  components: { LineChart, earnings, PocketList, BasicIncome },
+  components: { LineChart, earnings, PocketList, BasicIncome, BasicDeduction },
   setup() {
    
     const store = useStore()
@@ -89,7 +91,6 @@ export default {
 
     store.watch((state) => state.graph.calculate, () => {
       const income = store.state.graph.tasks[0] as Income
-      console.log(income.interest)
       if (income)
         calculateEarnings(income)
       else
