@@ -3,8 +3,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
-import Income from 'src/models/income'
 import Task from 'src/models/task'
+import Income from 'src/models/income'
 
 export function calculate (state: { calculate: boolean; }) {
     state.calculate = !state.calculate
@@ -12,13 +12,12 @@ export function calculate (state: { calculate: boolean; }) {
 
 export function savingsToggle(state: { savingsToggle: boolean }) {
     state.savingsToggle = !state.savingsToggle
-    console.log('mutation: ' + state.savingsToggle.toString())
 }
 
 export function projectIncomeOver100Years (state: any, payload: Income): void {
-    let array = new Array<number>(100).fill(parseInt(payload.income))
+    let array = new Array<number>(100).fill(payload.income)
     array = array.map((element: number, index: number) => {
-      if (index < parseInt(payload.startAge) || index > parseInt(payload.retirementAge)) {
+      if (index < payload.startAge || index > payload.retirementAge) {
         return 0
       } else {
         return element
@@ -29,9 +28,9 @@ export function projectIncomeOver100Years (state: any, payload: Income): void {
 }
 
 export function projectDeductionsOver100Years (state: any, payload: Income): void {
-    let array = new Array<number>(100).fill(parseInt(payload.deductions))
+    let array = new Array<number>(100).fill(payload.deductions)
     array = array.map((element, index) => {
-      if (index < parseInt(payload.startAge)) {
+      if (index < payload.startAge) {
         return 0
       } else {
         return element
@@ -55,14 +54,14 @@ export function compoundInterest (state: any, payload: Income): void {
     const temp = state.savings.map((x: number) => x)
 
     temp.forEach((value: number, index: number) => {
-      if (index >= parseInt(payload.startAge) && index < parseInt(payload.retirementAge)) {
-        temp[index] = getPeriodicCompounding(value, parseInt(payload.interest) / 100, index - parseInt(payload.startAge) - 1)
+      if (index >= payload.startAge && index < payload.retirementAge) {
+        temp[index] = getPeriodicCompounding(value, payload.interest / 100, index - payload.startAge - 1)
       }
     })
-    const difference = temp[parseInt(payload.retirementAge) - 1] - temp[parseInt(payload.retirementAge)]
+    const difference = temp[payload.retirementAge - 1] - temp[payload.retirementAge]
 
     temp.forEach((value:number, index:number) => {
-      if (index >= parseInt(payload.retirementAge)) {
+      if (index >= payload.retirementAge) {
         temp[index] = value + difference
       }
     })
@@ -75,6 +74,8 @@ export function compoundInterest (state: any, payload: Income): void {
   }
 
 export function setTask (state: any, task: Task): void {
+  console.log('setTask')
+  console.log(task)
   state.tasks.push(task)
 }
 

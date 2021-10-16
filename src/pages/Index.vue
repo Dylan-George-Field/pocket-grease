@@ -8,6 +8,7 @@
         </div>
         <div>
           <earnings v-on:submit="calculateEarnings" />
+          <basic-income />
         </div>
       </div>
     </div>
@@ -26,13 +27,13 @@ import Income from 'src/models/income'
 import earnings from 'src/components/earnings.vue'
 import { useStore } from 'vuex'
 import PocketList from 'src/components/pocketList.vue';
+import BasicIncome from 'src/components/basic-income.vue';
 
 Chart.register(...registerables);
 
 export default {
   name: 'App',
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  components: { LineChart, earnings, PocketList },
+  components: { LineChart, earnings, PocketList, BasicIncome },
   setup() {
    
     const store = useStore()
@@ -87,7 +88,8 @@ export default {
     });
 
     store.watch((state) => state.graph.calculate, () => {
-      const income = store.state.graph.tasks[0]
+      const income = store.state.graph.tasks[0] as Income
+      console.log(income.interest)
       if (income)
         calculateEarnings(income)
       else
@@ -95,7 +97,6 @@ export default {
     })
 
     const clearCanvas = function() {
-      console.log('clear canvas')
       total.value = [0]
       savings.value = [0]
       deductions.value = [0]

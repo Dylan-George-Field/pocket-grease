@@ -24,12 +24,6 @@ export default {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const tasks = store.state.graph.tasks as Task[]
 
-    console.log(tasks)
-
-    const setTask = function(task: Task): void {
-      void store.dispatch('graph/setTask', task)
-    }
-
     const deleteTask = function(task: Task): void {
       void store.dispatch('graph/deleteTask', task)
     }

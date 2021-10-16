@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
-import Income from 'src/models/income'
 import Task from 'src/models/task'
+import Income from 'src/models/income'
 
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 export function calculate (context: { commit: (arg0: string) => void }) {

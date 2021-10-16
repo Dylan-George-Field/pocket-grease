@@ -19,11 +19,11 @@
 <script>
 import { useStore } from 'vuex'
 import { computed, ref } from 'vue'
-import Task from 'src/models/task'
+import Income from 'src/models/income'
 
 export default {
   name: 'earnings',
-  setup(props, context) {
+  setup() {
     const income = ref(60000)
     const deductions = ref(50000)
     const startAge = ref(25)
@@ -33,7 +33,7 @@ export default {
     const store = useStore()
 
     const save = function() {
-      store.dispatch('graph/setTask', new Task('Basic Task', income.value, deductions.value, startAge.value, retirementAge.value, interest.value))
+      store.dispatch('graph/setTask', new Income('Basic Task', income.value, deductions.value, startAge.value, retirementAge.value, interest.value))
     }
 
     const incomeTax = computed(() => {

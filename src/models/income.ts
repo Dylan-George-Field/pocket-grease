@@ -1,7 +1,25 @@
-export default class Income {
-    public income = '0'
-    public deductions = '0'
-    public startAge = '0'
-    public retirementAge = '0'
-    public interest = '0'
+import Task from 'src/models/task'
+
+export default class Income extends Task {
+    income: number
+    deductions: number
+    startAge: number
+    retirementAge: number
+    interest: number
+
+    constructor(
+        name: string,
+        income: number,
+        deductions: number,
+        startAge: number,
+        retirementAge: number,
+        interest: number
+    ) {
+        super(name)
+        this.income = income
+        this.deductions = deductions
+        this.startAge = startAge
+        this.retirementAge = retirementAge
+        this.interest = interest
+    }
 }
