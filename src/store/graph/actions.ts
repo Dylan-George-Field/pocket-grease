@@ -2,6 +2,7 @@
 
 import Task from 'src/models/task'
 import Income from 'src/models/income'
+import Deduction from 'src/models/deduction'
 
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 export function calculate (context: { commit: (arg0: string) => void }) {
@@ -16,7 +17,7 @@ export function projectIncomeOver100Years (context: { commit: (arg0: string, arg
     context.commit('projectIncomeOver100Years', income)
 }
 
-export function projectDeductionsOver100Years (context: { commit: (arg0: string, arg1: Income) => void }, income: Income) {
+export function projectDeductionsOver100Years (context: { commit: (arg0: string, arg1: Deduction) => void }, income: Deduction) {
     context.commit('projectDeductionsOver100Years', income)
 }
 

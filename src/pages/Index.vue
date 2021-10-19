@@ -7,8 +7,9 @@
           <pocket-list />
         </div>
         <div>
-          <earnings v-on:submit="calculateEarnings" />
           <basic-income />
+        </div>
+        <div>
           <basic-deduction />
         </div>
       </div>
@@ -24,8 +25,7 @@
 import { computed, ref } from 'vue'
 import { LineChart, useLineChart } from 'vue-chart-3'
 import { Chart, ChartData, ChartOptions, registerables } from 'chart.js'
-import Income from 'src/models/income'
-import earnings from 'src/components/earnings.vue'
+import Task from 'src/models/task'
 import { useStore } from 'vuex'
 import PocketList from 'src/components/pocketList.vue'
 import BasicIncome from 'src/components/basic-income.vue'
@@ -35,7 +35,7 @@ Chart.register(...registerables);
 
 export default {
   name: 'App',
-  components: { LineChart, earnings, PocketList, BasicIncome, BasicDeduction },
+  components: { LineChart, PocketList, BasicIncome, BasicDeduction },
   setup() {
    
     const store = useStore()
@@ -44,10 +44,17 @@ export default {
     const savings = ref([0])
     const deductions = ref([0])
     const toggle = ref()
+    const income = ref([0])
 
     var testData = computed<ChartData<'line'>>(() => ({
       labels: Array.from(Array(100).keys()), // x axis data points (100 years)
       datasets: [
+        {
+          backgroundColor: 'rgba(255, 255, 0, 0.1)',
+          label: 'Income',
+          data: income.value,
+          hidden: false
+        },
         {
           backgroundColor: 'rgba(0, 255, 0, 0.1)',
           label: 'Total',
@@ -90,7 +97,7 @@ export default {
     });
 
     store.watch((state) => state.graph.calculate, () => {
-      const income = store.state.graph.tasks[0] as Income
+      const income = store.state.graph.tasks[0] as Task
       if (income)
         calculateEarnings(income)
       else
@@ -103,12 +110,14 @@ export default {
       deductions.value = [0]
     }
 
-    const calculateEarnings = function(income: Income) {
-      void store.dispatch('graph/projectIncomeOver100Years', income)
-      void store.dispatch('graph/projectDeductionsOver100Years', income)
-      void store.dispatch('graph/deduct')
-      void store.dispatch('graph/compoundInterest', income)
+    const calculateEarnings = function(task: Task) {
+      // call common task
+      task.calculate()
 
+      void store.dispatch('graph/deduct')
+      void store.dispatch('graph/compoundInterest', task)
+
+      income.value = store.state.graph.income
       total.value = store.state.graph.total
       savings.value = store.state.graph.savings
       deductions.value = store.state.graph.deductions

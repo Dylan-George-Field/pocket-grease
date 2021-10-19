@@ -1,4 +1,3 @@
-import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
 import graph from './graph'
 
@@ -13,8 +12,7 @@ import graph from './graph'
  * with the Store instance.
  */
 
-export default store(function (/* { ssrContext } */) {
-  const Store = createStore({
+const store = createStore({
     modules: {
       graph
     },
@@ -24,5 +22,4 @@ export default store(function (/* { ssrContext } */) {
     strict: process.env.DEBUGGING
   })
 
-  return Store
-})
+export default store

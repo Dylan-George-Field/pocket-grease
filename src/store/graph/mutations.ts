@@ -5,6 +5,7 @@
 
 import Task from 'src/models/task'
 import Income from 'src/models/income'
+import Deduction from 'src/models/deduction'
 
 export function calculate (state: { calculate: boolean; }) {
     state.calculate = !state.calculate
@@ -24,13 +25,14 @@ export function projectIncomeOver100Years (state: any, payload: Income): void {
       }
     })
     array = array.map((elem: unknown, index: number) => array.slice(0, index + 1).reduce((a: number, b: number) => a + b))
+
     state.income = array
 }
 
-export function projectDeductionsOver100Years (state: any, payload: Income): void {
+export function projectDeductionsOver100Years (state: any, payload: Deduction): void {
     let array = new Array<number>(100).fill(payload.deductions)
     array = array.map((element, index) => {
-      if (index < payload.startAge) {
+      if (index < payload.start) {
         return 0
       } else {
         return element

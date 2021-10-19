@@ -1,6 +1,8 @@
 <template>
   <h5 class="q-my-none">Basic Deduction</h5>
     <q-input v-model="deduction" label="Yearly Deductions" type="number" />
+    <q-input v-model="start" label="Start Year" type="number" />
+    <q-input v-model="end" label="End Year" type="number" />
     <q-btn color="primary" label="Save" @click="save" />
 </template>
 
@@ -14,17 +16,21 @@ import Deduction from 'src/models/deduction'
 export default {
   name: 'BasicDeduction',
   setup () {
-    const deduction = ref(0)
+    const deduction = ref(50000)
+    const start = ref(25)
+    const end = ref(100)
 
     const store = useStore()
 
     const save = function() {
-      void store.dispatch('graph/setTask', new Deduction('Basic Deduction', deduction.value))
+      void store.dispatch('graph/setTask', new Deduction('Basic Deduction', deduction.value, start.value, end.value))
     }
 
     return {
       deduction,
-      save
+      save,
+      start,
+      end
     }
   }
 }

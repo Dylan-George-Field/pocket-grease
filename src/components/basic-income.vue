@@ -19,13 +19,12 @@ export default {
     const income = ref(60000)
     const startAge = ref(25)
     const retirementAge = ref(65)
-    const deductions = ref(0) // to remove
     const interest = ref(2)
     
     const store = useStore()
 
     const save = function() {
-      void store.dispatch('graph/setTask', new Income('Basic Income', income.value, deductions.value, startAge.value, retirementAge.value, interest.value))
+      void store.dispatch('graph/setTask', new Income('Basic Income', income.value, startAge.value, retirementAge.value, interest.value))
     }
 
     return {
