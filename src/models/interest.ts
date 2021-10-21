@@ -1,22 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import Task from 'src/models/task'
 import store from '../store/index'
+import Task from 'src/models/task'
 
-export default class Income extends Task {
-    income: number
-    startAge: number
-    retirementAge: number
+export default class Interest extends Task { // to extend income
+    interest: number
 
     constructor(
         name: string,
-        income: number,
-        startAge: number,
-        retirementAge: number,
+        interest: number,
     ) {
         super(name)
-        this.income = income
-        this.startAge = startAge
-        this.retirementAge = retirementAge
+        this.interest = interest
     }
 
     calculate(): void {

@@ -1,8 +1,8 @@
 <template>
-  <h5 class="q-my-none">Basic Deduction</h5>
-    <q-input v-model="deduction" label="Yearly Deductions" type="number" />
-    <q-input v-model="start" label="Start Year" type="number" />
-    <q-input v-model="end" label="End Year" type="number" />
+  <h5 class="q-my-none">Deduction</h5>
+    <q-input v-model.number="deduction" label="Yearly Deductions" type="number" />
+    <q-input v-model.number="start" label="Start Year" type="number" />
+    <q-input v-model.number="end" label="End Year" type="number" />
     <q-btn color="primary" label="Save" @click="save" />
 </template>
 

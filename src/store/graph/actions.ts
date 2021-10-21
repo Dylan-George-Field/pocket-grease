@@ -9,6 +9,10 @@ export function calculate (context: { commit: (arg0: string) => void }) {
     context.commit('calculate')
 }
 
+export function clearCanvas(context: { commit: (arg0: string) => void }) {
+    context.commit('clearCanvas')
+}
+
 export function savingsToggle (context: { commit: (arg0: string) => void }) {
     context.commit('savingsToggle')
 }

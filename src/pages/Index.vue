@@ -12,6 +12,9 @@
         <div>
           <basic-deduction />
         </div>
+        <div>
+          <savings-interest />
+        </div>
       </div>
     </div>
   </div>
@@ -30,12 +33,13 @@ import { useStore } from 'vuex'
 import PocketList from 'src/components/pocketList.vue'
 import BasicIncome from 'src/components/basic-income.vue'
 import BasicDeduction from 'src/components/basic-deduction.vue'
+import SavingsInterest from 'src/components/savings-interest.vue'
 
 Chart.register(...registerables);
 
 export default {
   name: 'App',
-  components: { LineChart, PocketList, BasicIncome, BasicDeduction },
+  components: { LineChart, PocketList, BasicIncome, BasicDeduction, SavingsInterest },
   setup() {
    
     const store = useStore()
@@ -97,26 +101,27 @@ export default {
     });
 
     store.watch((state) => state.graph.calculate, () => {
-      const income = store.state.graph.tasks[0] as Task
-      if (income)
-        calculateEarnings(income)
-      else
-        clearCanvas()
+      clearCanvas()
+      const tasks = store.state.graph.tasks as Task[]
+      
+      if (tasks) {
+        tasks.forEach(task => {
+          task.calculate()
+        });
+
+      void store.dispatch('graph/deduct')
+      //void store.dispatch('graph/compoundInterest', task)
+
+      setGraph()
+      }
     })
 
     const clearCanvas = function() {
-      total.value = [0]
-      savings.value = [0]
-      deductions.value = [0]
+      void store.dispatch('graph/clearCanvas')
+      setGraph()
     }
 
-    const calculateEarnings = function(task: Task) {
-      // call common task
-      task.calculate()
-
-      void store.dispatch('graph/deduct')
-      void store.dispatch('graph/compoundInterest', task)
-
+    const setGraph = function() {
       income.value = store.state.graph.income
       total.value = store.state.graph.total
       savings.value = store.state.graph.savings
@@ -128,8 +133,7 @@ export default {
       testData,
       options,
       lineChartRef,
-      lineChartProps,
-      calculateEarnings
+      lineChartProps
     };
   }
 }

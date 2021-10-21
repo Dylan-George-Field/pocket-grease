@@ -11,12 +11,20 @@ export function calculate (state: { calculate: boolean; }) {
     state.calculate = !state.calculate
 }
 
-export function savingsToggle(state: { savingsToggle: boolean }) {
+export function clearCanvas (state: any) {
+  state.income = []
+  state.total = []
+  state.deductions = []
+  state.savings = []
+}
+
+export function savingsToggle (state: { savingsToggle: boolean }) {
     state.savingsToggle = !state.savingsToggle
 }
 
 export function projectIncomeOver100Years (state: any, payload: Income): void {
     let array = new Array<number>(100).fill(payload.income)
+
     array = array.map((element: number, index: number) => {
       if (index < payload.startAge || index > payload.retirementAge) {
         return 0
@@ -25,8 +33,14 @@ export function projectIncomeOver100Years (state: any, payload: Income): void {
       }
     })
     array = array.map((elem: unknown, index: number) => array.slice(0, index + 1).reduce((a: number, b: number) => a + b))
+    console.log(array)
 
-    state.income = array
+    if (state.income.length > 0) {
+      state.income = state.income.map((e: number, i:number) => e + array[i])
+    } else {
+      console.log('else')
+      state.income = array
+    }
 }
 
 export function projectDeductionsOver100Years (state: any, payload: Deduction): void {
@@ -52,28 +66,28 @@ export function deduct (state: any): void {
     state.savings = array
   }
 
-export function compoundInterest (state: any, payload: Income): void {
-    const temp = state.savings.map((x: number) => x)
+//export function compoundInterest (state: any, payload: Income): void {
+    // const temp = state.savings.map((x: number) => x)
 
-    temp.forEach((value: number, index: number) => {
-      if (index >= payload.startAge && index < payload.retirementAge) {
-        temp[index] = getPeriodicCompounding(value, payload.interest / 100, index - payload.startAge - 1)
-      }
-    })
-    const difference = temp[payload.retirementAge - 1] - temp[payload.retirementAge]
+    // temp.forEach((value: number, index: number) => {
+    //   if (index >= payload.startAge && index < payload.retirementAge) {
+    //     temp[index] = getPeriodicCompounding(value, payload.interest / 100, index - payload.startAge - 1)
+    //   }
+    // })
+    // const difference = temp[payload.retirementAge - 1] - temp[payload.retirementAge]
 
-    temp.forEach((value:number, index:number) => {
-      if (index >= payload.retirementAge) {
-        temp[index] = value + difference
-      }
-    })
+    // temp.forEach((value:number, index:number) => {
+    //   if (index >= payload.retirementAge) {
+    //     temp[index] = value + difference
+    //   }
+    // })
 
-    state.total = temp
-  }
+    // state.total = temp
+//  }
 
-  const getPeriodicCompounding = function (principal: number, interest: number, time: number) {
-    return Math.pow(interest + 1, time) * principal
-  }
+  // const getPeriodicCompounding = function (principal: number, interest: number, time: number) {
+  //   return Math.pow(interest + 1, time) * principal
+  // }
 
 export function setTask (state: any, task: Task): void {
   state.tasks.push(task)
