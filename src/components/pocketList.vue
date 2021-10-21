@@ -1,8 +1,8 @@
 <template>
-  <div>
-    Pocket List
-  </div>
-  <q-list v-for="task in tasks" :key="task.name">
+  <q-toolbar class="bg-primary text-white shadow-2">
+    <q-toolbar-title>Pocket List</q-toolbar-title>
+  </q-toolbar>
+  <q-list v-for="task in tasks" :key="task.name" bordered>
     <q-item clickable>
       {{task.name}}
       <q-item-section top side>

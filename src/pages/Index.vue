@@ -2,8 +2,8 @@
   <div>
     <LineChart v-bind="lineChartProps" />
     <div class="q-pa-lg form">
-      <div class="row">
-        <div class="col-4">
+      <div class="row q-col-gutter-md">
+        <div class="col-4 ">
           <pocket-list />
         </div>
         <div>
@@ -140,7 +140,5 @@ export default {
 </script>
 
 <style scoped>
-  .form {
-    padding-top: 0
-  }
+
 </style>
