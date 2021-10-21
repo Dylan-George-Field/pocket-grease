@@ -33,12 +33,10 @@ export function projectIncomeOver100Years (state: any, payload: Income): void {
       }
     })
     array = array.map((elem: unknown, index: number) => array.slice(0, index + 1).reduce((a: number, b: number) => a + b))
-    console.log(array)
 
     if (state.income.length > 0) {
       state.income = state.income.map((e: number, i:number) => e + array[i])
     } else {
-      console.log('else')
       state.income = array
     }
 }
@@ -54,7 +52,11 @@ export function projectDeductionsOver100Years (state: any, payload: Deduction): 
     })
     array = array.map((elem, index) => array.slice(0, index + 1).reduce((a, b) => a + b))
 
-    state.deductions = array
+    if (state.deductions.length > 0) {
+      state.deductions = state.deductions.map((e: number, i:number) => e + array[i])
+    } else {
+      state.deductions = array
+    }
   }
 
 export function deduct (state: any): void {
