@@ -8,9 +8,11 @@
     </q-item>
   </q-list>
   <q-list v-for="task in tasks" :key="task.name" bordered>
-    <q-item clickable>
-      {{task.name}}
-      <q-item-section top side>
+    <q-item>
+      <q-item-section>
+        {{task.name}}
+      </q-item-section>
+      <q-item-section side>
         <q-btn class="gt-xs" size="12px" flat dense round icon="delete" @click="deleteTask(task)" />
       </q-item-section>
     </q-item>
