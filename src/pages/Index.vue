@@ -26,7 +26,6 @@ import Task from 'src/models/task'
 import { useStore } from 'vuex'
 import PocketList from 'src/components/pocket-list.vue'
 import PocketSelector from 'src/components/pocket-selector.vue'
-import Interest from 'src/models/interest'
 
 Chart.register(...registerables);
 
