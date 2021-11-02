@@ -6,6 +6,7 @@
 import Task from 'src/models/task'
 import Income from 'src/models/income'
 import Deduction from 'src/models/deduction'
+import Interest from 'src/models/interest'
 
 export function calculate (state: { calculate: boolean; }) {
     state.calculate = !state.calculate
@@ -68,7 +69,7 @@ export function deduct (state: any): void {
     state.savings = array
   }
 
-export function compoundInterest (state: any): void {
+export function compoundInterest (state: any, interest: Interest): void {
     const savings: number[] = state.savings
 
     const difference = savings.map((element: number, index: number) => {
@@ -79,7 +80,7 @@ export function compoundInterest (state: any): void {
       let interestAccrued = 0
       let total = 0
       if (element > 0) {
-        interestAccrued = element * .05
+        interestAccrued = element * (interest.interest / 100)
         total = element + interestAccrued
         savings[index + 1] = (difference[index] + total)
       }

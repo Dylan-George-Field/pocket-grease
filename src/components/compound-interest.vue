@@ -1,6 +1,6 @@
 <template>
     <h5 class="q-my-none">Compound Interest</h5>
-  <q-input v-model.number="interest" label="Yearly Income" type="number" />
+  <q-input v-model.number="interest" label="Interest %" type="number" />
   <q-btn color="primary" label="Save" @click="save" class="q-mt-sm" />
 </template>
 
