@@ -6,14 +6,8 @@
         <div class="col-4 ">
           <pocket-list />
         </div>
-        <div>
-          <basic-income />
-        </div>
-        <div>
-          <basic-deduction />
-        </div>
-        <div>
-          <savings-interest />
+        <div class="col-8">
+          <pocket-selector />
         </div>
       </div>
     </div>
@@ -31,15 +25,14 @@ import { Chart, ChartData, ChartOptions, registerables } from 'chart.js'
 import Task from 'src/models/task'
 import { useStore } from 'vuex'
 import PocketList from 'src/components/pocket-list.vue'
-import BasicIncome from 'src/components/basic-income.vue'
-import BasicDeduction from 'src/components/basic-deduction.vue'
-import SavingsInterest from 'src/components/savings-interest.vue'
+import PocketSelector from 'src/components/pocket-selector.vue'
+import Interest from 'src/models/interest'
 
 Chart.register(...registerables);
 
 export default {
   name: 'App',
-  components: { LineChart, PocketList, BasicIncome, BasicDeduction, SavingsInterest },
+  components: { LineChart, PocketList, PocketSelector},
   setup() {
    
     const store = useStore()
@@ -102,17 +95,17 @@ export default {
 
     store.watch((state) => state.graph.calculate, () => {
       clearCanvas()
+      void store.dispatch('graph/sortTasks')
       const tasks = store.state.graph.tasks as Task[]
       
       if (tasks) {
         tasks.forEach(task => {
-          task.calculate()
+            task.calculate()
         });
 
-      void store.dispatch('graph/deduct')
-      //void store.dispatch('graph/compoundInterest', task)
+        void store.dispatch('graph/deduct')
 
-      setGraph()
+        setGraph()
       }
     })
 

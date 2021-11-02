@@ -3,6 +3,7 @@
 import Task from 'src/models/task'
 import Income from 'src/models/income'
 import Deduction from 'src/models/deduction'
+import Interest from 'src/models/interest'
 
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 export function calculate (context: { commit: (arg0: string) => void }) {
@@ -29,8 +30,8 @@ export function deduct (context: { commit: (arg0: string) => void }) {
     context.commit('deduct')
 }
 
-export function compoundInterest (context: { commit: (arg0: string, arg1: Income) => void }, income: Income) {
-    context.commit('compoundInterest', income)
+export function compoundInterest (context: { commit: (arg0: string, arg1: Interest) => void }, interest: Interest) {
+    context.commit('compoundInterest', interest)
 }
 
 export function setTask(context: { commit: (arg0: string, arg1: Task) => void }, task: Task) {
@@ -39,4 +40,8 @@ export function setTask(context: { commit: (arg0: string, arg1: Task) => void },
 
 export function deleteTask(context: { commit: (arg0: string, arg1: Task) => void }, task: Task) {
     context.commit('deleteTask', task)
+}
+
+export function sortTasks(context: { commit: (arg0: string) => void }) {
+    context.commit('sortTasks')
 }

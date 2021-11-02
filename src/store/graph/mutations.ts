@@ -68,28 +68,24 @@ export function deduct (state: any): void {
     state.savings = array
   }
 
-//export function compoundInterest (state: any, payload: Income): void {
-    // const temp = state.savings.map((x: number) => x)
+export function compoundInterest (state: any): void {
+    const savings: number[] = state.savings
 
-    // temp.forEach((value: number, index: number) => {
-    //   if (index >= payload.startAge && index < payload.retirementAge) {
-    //     temp[index] = getPeriodicCompounding(value, payload.interest / 100, index - payload.startAge - 1)
-    //   }
-    // })
-    // const difference = temp[payload.retirementAge - 1] - temp[payload.retirementAge]
+    const difference = savings.map((element: number, index: number) => {
+      return element - savings[index - 1]
+    })
 
-    // temp.forEach((value:number, index:number) => {
-    //   if (index >= payload.retirementAge) {
-    //     temp[index] = value + difference
-    //   }
-    // })
-
-    // state.total = temp
-//  }
-
-  // const getPeriodicCompounding = function (principal: number, interest: number, time: number) {
-  //   return Math.pow(interest + 1, time) * principal
-  // }
+    state.total = savings.map((element: number, index: number) => {
+      let interestAccrued = 0
+      let total = 0
+      if (element > 0) {
+        interestAccrued = element * .05
+        total = element + interestAccrued
+        savings[index + 1] = (difference[index] + total)
+      }
+      return element + interestAccrued
+    })
+ }
 
 export function setTask (state: any, task: Task): void {
   state.tasks.push(task)
@@ -98,4 +94,8 @@ export function setTask (state: any, task: Task): void {
 export function deleteTask (state: any, task: Task): void {
   const result = state.tasks.findIndex((x: Task) => x === task)
   state.tasks.splice(result, 1)
+}
+
+export function sortTasks (state: any): void {
+  state.tasks.sort((a: Task, b: Task) => (a.priority > b.priority) ? 1 : -1)
 }

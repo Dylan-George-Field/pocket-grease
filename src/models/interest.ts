@@ -9,12 +9,12 @@ export default class Interest extends Task { // to extend income
         name: string,
         interest: number,
     ) {
-        super(name)
+        super(name, 2)
         this.interest = interest
     }
 
     calculate(): void {
         //eslint-disable-next-line @typescript-eslint/no-unsafe-call
-        void store.dispatch('graph/projectIncomeOver100Years', this)
+        void store.dispatch('graph/compoundInterest', this)
     }
 }

@@ -13,7 +13,7 @@ export default class Income extends Task {
         startAge: number,
         retirementAge: number,
     ) {
-        super(name)
+        super(name, 0)
         this.income = income
         this.startAge = startAge
         this.retirementAge = retirementAge
@@ -22,5 +22,6 @@ export default class Income extends Task {
     calculate(): void {
         //eslint-disable-next-line @typescript-eslint/no-unsafe-call
         void store.dispatch('graph/projectIncomeOver100Years', this)
+        void store.dispatch('graph/deduct')
     }
 }

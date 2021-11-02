@@ -15,7 +15,7 @@ import Deduction from 'src/models/deduction'
 
 export default {
   name: 'BasicDeduction',
-  setup () {
+  setup (props, { emit }) {
     const deduction = ref(50000)
     const start = ref(25)
     const end = ref(100)
@@ -24,6 +24,7 @@ export default {
 
     const save = function() {
       void store.dispatch('graph/setTask', new Deduction('Basic Deduction', deduction.value, start.value, end.value))
+      emit('saved')
     }
 
     return {

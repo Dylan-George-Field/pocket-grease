@@ -12,7 +12,7 @@ export default class Deduction extends Task {
         start: number,
         end: number
     ) {
-        super(name)
+        super(name, 1)
         this.deductions = deductions
         this.start = start
         this.end = end
@@ -21,5 +21,6 @@ export default class Deduction extends Task {
     calculate(): void {
         //eslint-disable-next-line @typescript-eslint/no-unsafe-call
         void store.dispatch('graph/projectDeductionsOver100Years', this)
+        void store.dispatch('graph/deduct')
     }
 }
