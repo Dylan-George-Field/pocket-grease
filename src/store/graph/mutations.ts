@@ -79,7 +79,7 @@ export function compoundInterest (state: any, interest: Interest): void {
     state.total = savings.map((element: number, index: number) => {
       let interestAccrued = 0
       let total = 0
-      if (element > 0) {
+      if (element !== 0) {
         interestAccrued = element * (interest.interest / 100)
         total = element + interestAccrued
         savings[index + 1] = (difference[index] + total)
