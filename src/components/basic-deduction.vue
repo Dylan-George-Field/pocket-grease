@@ -3,7 +3,7 @@
     <q-input v-model.number="deduction" label="Yearly Deductions" type="number" />
     <q-input v-model.number="start" label="Start Year" type="number" />
     <q-input v-model.number="end" label="End Year" type="number" />
-    <q-btn color="primary" label="Save" @click="save" />
+    <q-btn color="primary" label="Save" @click="save" class="q-mt-sm" />
 </template>
 
 <script>
