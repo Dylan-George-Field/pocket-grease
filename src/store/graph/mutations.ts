@@ -45,7 +45,7 @@ export function projectIncomeOver100Years (state: any, payload: Income): void {
 export function projectDeductionsOver100Years (state: any, payload: Deduction): void {
     let array = new Array<number>(100).fill(payload.deductions)
     array = array.map((element, index) => {
-      if (index < payload.start) {
+      if (index < payload.start || index > payload.end) {
         return 0
       } else {
         return element

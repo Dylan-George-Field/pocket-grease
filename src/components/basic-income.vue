@@ -3,7 +3,10 @@
     <q-input v-model.number="income" label="Yearly Income" type="number" />
     <q-input v-model.number="startAge" label="Start Age" type=number />
     <q-input v-model.number="retirementAge" label="Retirement Age" type="number" />
-    <q-btn color="primary" label="Save" @click="save" class="q-mt-sm" />
+    <div class="row q-mt-sm q-gutter-sm">
+      <q-btn color="primary" label="save" @click="save" class="q-mt-sm" />
+      <q-btn color="primary" label="cancel" @click="cancel" class="q-mt-sm" outline />
+    </div>
 </template>
 
 <script>
@@ -23,6 +26,10 @@ export default {
     const retirementAge = ref(65)
 
     const store = useStore()
+    
+    const cancel = function() {
+      emit('cancel')
+    }
 
     const save = function() {
       void store.dispatch('graph/setTask', new Income('Basic Income', income.value, startAge.value, retirementAge.value))
@@ -33,7 +40,8 @@ export default {
       income,
       startAge,
       retirementAge,
-      save
+      save,
+      cancel
     }
   }
 }

@@ -59,8 +59,9 @@
       <q-toolbar class="justify-center">
         <div>
         <p>
-          2021 - Quasar v{{ $q.version }}<br />
+          Pocket Grease v0.0.3 · Quasar v{{ $q.version }} · 2021
         </p>
+        
         </div>
       </q-toolbar>
     </q-footer>

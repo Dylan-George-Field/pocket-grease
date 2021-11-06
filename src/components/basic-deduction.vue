@@ -3,7 +3,10 @@
     <q-input v-model.number="deduction" label="Yearly Deductions" type="number" />
     <q-input v-model.number="start" label="Start Year" type="number" />
     <q-input v-model.number="end" label="End Year" type="number" />
-    <q-btn color="primary" label="Save" @click="save" class="q-mt-sm" />
+    <div class="row q-mt-sm q-gutter-sm">
+      <q-btn color="primary" label="save" @click="save" class="q-mt-sm" />
+      <q-btn color="primary" label="cancel" @click="cancel" class="q-mt-sm" outline />
+    </div>
 </template>
 
 <script>
@@ -22,7 +25,12 @@ export default {
 
     const store = useStore()
 
+    const cancel = function() {
+      emit('cancel')
+    }
+
     const save = function() {
+      console.log(end.value)
       void store.dispatch('graph/setTask', new Deduction('Basic Deduction', deduction.value, start.value, end.value))
       emit('saved')
     }
@@ -31,7 +39,8 @@ export default {
       deduction,
       save,
       start,
-      end
+      end,
+      cancel
     }
   }
 }

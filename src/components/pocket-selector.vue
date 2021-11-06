@@ -5,13 +5,13 @@
     <q-btn color="primary" label="Interest" @click="showInterest = !showInterest" />
   </div>
   <div v-show="showBasicIncome">
-    <basic-income @saved="showBasicIncome = false" />
+    <basic-income @saved="showBasicIncome = false" @cancel="showBasicIncome = false" />
   </div>
   <div v-show="showBasicDeduction">
-    <basic-deduction @saved="showBasicDeduction = false" />
+    <basic-deduction @saved="showBasicDeduction = false" @cancel="showBasicDeduction = false" />
   </div>
   <div v-show="showInterest">
-    <compound-interest @saved="showInterest = false" />
+    <compound-interest @saved="showInterest = false" @cancel="showInterest = false" />
   </div>
 </template>
 
@@ -22,7 +22,7 @@ import BasicDeduction from 'src/components/basic-deduction.vue'
 import CompoundInterest from 'src/components/compound-interest.vue'
 
 export default {
-  name: 'PcoketSelector',
+  name: 'PocketSelector',
   components: { BasicIncome, BasicDeduction, CompoundInterest },
   setup () {
     let showBasicIncome = ref(false)
