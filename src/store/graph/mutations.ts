@@ -100,3 +100,12 @@ export function deleteTask (state: any, task: Task): void {
 export function sortTasks (state: any): void {
   state.tasks.sort((a: Task, b: Task) => (a.priority > b.priority) ? 1 : -1)
 }
+
+export function editTask(state: any, payload: { newTask: Task, oldTask: Task }): void {
+  const index = state.tasks.findIndex((x: Task) => x === payload.oldTask)
+  state.tasks[index] = payload.newTask
+}
+
+export function selectTask(state: any, task: Task): void {
+  state.selectedTask = task
+}

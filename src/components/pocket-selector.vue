@@ -16,15 +16,29 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+
+import { ref, watch } from 'vue'
+import { useStore } from 'vuex'
+
 import BasicIncome from 'src/components/basic-income.vue'
 import BasicDeduction from 'src/components/basic-deduction.vue'
 import CompoundInterest from 'src/components/compound-interest.vue'
+import Income from 'src/models/income'
 
 export default {
   name: 'PocketSelector',
   components: { BasicIncome, BasicDeduction, CompoundInterest },
   setup () {
+    const store = useStore()
+    
+    watch(() => store.state.graph.selectedTask, (task) => {
+      if (task instanceof Income)
+        showBasicIncome.value = true
+    })
+
     let showBasicIncome = ref(false)
     let showBasicDeduction = ref(false)
     let showInterest = ref(false)

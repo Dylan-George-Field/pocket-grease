@@ -8,12 +8,12 @@
     </q-item>
   </q-list>
   <q-list v-for="task in tasks" :key="task.name" bordered>
-    <q-item>
+    <q-item clickable @click="editTask(task)">
       <q-item-section>
         {{task.name}}
       </q-item-section>
       <q-item-section side>
-        <q-btn class="gt-xs" size="12px" flat dense round icon="delete" @click="deleteTask(task)" />
+        <q-btn class="gt-xs" size="12px" flat dense round icon="delete" @click.stop="deleteTask(task)" />
       </q-item-section>
     </q-item>
   </q-list>
@@ -30,14 +30,19 @@ export default {
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const tasks = store.state.graph.tasks as Task[]
-    console.log(tasks)
+    
     const deleteTask = function(task: Task): void {
       void store.dispatch('graph/deleteTask', task)
     }
 
+    const editTask = function(task: Task): void {
+      void store.dispatch('graph/selectTask', task)
+    }
+
     return {
       tasks,
-      deleteTask
+      deleteTask,
+      editTask
     }
   }
 }

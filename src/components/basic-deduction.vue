@@ -30,7 +30,6 @@ export default {
     }
 
     const save = function() {
-      console.log(end.value)
       void store.dispatch('graph/setTask', new Deduction('Basic Deduction', deduction.value, start.value, end.value))
       emit('saved')
     }

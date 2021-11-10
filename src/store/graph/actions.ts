@@ -45,3 +45,15 @@ export function deleteTask(context: { commit: (arg0: string, arg1: Task) => void
 export function sortTasks(context: { commit: (arg0: string) => void }) {
     context.commit('sortTasks')
 }
+
+export function selectTask(context: { commit: (arg0: string, arg1: Task) => void }, task: Task) {
+    context.commit('selectTask', task)
+}
+
+export function editTask(context: { commit: (arg0: string, arg1: { newTask: Task; oldTask: Task }) => void }, payload: { newTask: Task, oldTask: Task }) {
+    context.commit('editTask', payload)
+}
+
+export function unselectTask(context: { commit: (arg0: string, arg1: null) => void }) {
+    context.commit('selectTask', null)
+}
