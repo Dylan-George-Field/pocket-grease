@@ -28,7 +28,6 @@ export default {
     const store = useStore()
 
     watch(() => store.state.graph.selectedTask, (value) => {
-      console.log(value)
       if (value instanceof Interest) {
         isEditing = true
         selectedTask = value
