@@ -2,7 +2,7 @@ import Task from 'src/models/task'
 import store from '../store/index'
 
 export default class Deduction extends Task {
-    deductions: number
+    deduction: number
     start: number
     end: number
 
@@ -13,7 +13,7 @@ export default class Deduction extends Task {
         end: number
     ) {
         super(name, 1)
-        this.deductions = deductions
+        this.deduction = deductions
         this.start = start
         this.end = end
     }

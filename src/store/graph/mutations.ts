@@ -43,7 +43,7 @@ export function projectIncomeOver100Years (state: any, payload: Income): void {
 }
 
 export function projectDeductionsOver100Years (state: any, payload: Deduction): void {
-    let array = new Array<number>(100).fill(payload.deductions)
+    let array = new Array<number>(100).fill(payload.deduction)
     array = array.map((element, index) => {
       if (index < payload.start || index > payload.end) {
         return 0
@@ -79,12 +79,17 @@ export function compoundInterest (state: any, interest: Interest): void {
     state.total = savings.map((element: number, index: number) => {
       let interestAccrued = 0
       let total = 0
-      if (element !== 0) {
+      if (element >= 0) {
         interestAccrued = element * (interest.interest / 100)
         total = element + interestAccrued
         savings[index + 1] = (difference[index] + total)
+      } else if (element){
+        console.log(element)
+        savings[index + 1] = (difference[index] + element)
+        
+        return element
       }
-      return element + interestAccrued
+      return total
     })
  }
 
