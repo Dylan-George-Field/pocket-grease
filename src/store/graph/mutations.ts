@@ -84,7 +84,6 @@ export function compoundInterest (state: any, interest: Interest): void {
         total = element + interestAccrued
         savings[index + 1] = (difference[index] + total)
       } else if (element){
-        console.log(element)
         savings[index + 1] = (difference[index] + element)
         
         return element

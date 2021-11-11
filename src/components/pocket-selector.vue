@@ -28,6 +28,7 @@ import BasicDeduction from 'src/components/basic-deduction.vue'
 import CompoundInterest from 'src/components/compound-interest.vue'
 import Income from 'src/models/income'
 import Deduction from 'src/models/deduction'
+import Interest from 'src/models/interest'
 
 export default {
   name: 'PocketSelector',
@@ -40,6 +41,8 @@ export default {
         showBasicIncome.value = true
       else if (task instanceof Deduction)
         showBasicDeduction.value = true
+      else if (task instanceof Interest)
+        showInterest.value = true
     })
 
     let showBasicIncome = ref(false)

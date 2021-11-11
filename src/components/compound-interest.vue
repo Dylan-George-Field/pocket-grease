@@ -9,8 +9,12 @@
 
 <script>
 /* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import { useStore } from 'vuex'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import Interest from 'src/models/interest'
 
 export default {
@@ -18,17 +22,44 @@ export default {
   emits: ['saved'],
   setup (props, { emit }) {
     const interest = ref(2)
+    let isEditing = false
+    let selectedTask = {}
 
     const store = useStore()
 
+    watch(() => store.state.graph.selectedTask, (value) => {
+      console.log(value)
+      if (value instanceof Interest) {
+        isEditing = true
+        selectedTask = value
+        interest.value = value.interest
+      }
+    })
+
     const cancel = function() {
       emit('cancel')
+      reset()
     }
 
     const save = function() {
-      void store.dispatch('graph/setTask', new Interest('Interest', interest.value))
+      const newTask = new Interest('Interest', interest.value)
+      if (isEditing) {
+        void store.dispatch('graph/editTask', { newTask, oldTask: selectedTask })
+      } else {
+        void store.dispatch('graph/setTask', newTask)
+      }
       emit('saved')
+      reset()
     }
+
+    const reset = function() {
+      isEditing = false
+      selectedTask = {}
+      void store.dispatch('graph/unselectTask')
+
+      interest.value = 2
+    }
+
     return {
       interest,
       save,
