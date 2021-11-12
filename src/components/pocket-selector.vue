@@ -40,17 +40,17 @@ export default {
       if (task instanceof Income) {
         showBasicIncome.value = true
         showBasicDeduction.value = false
-        showInterest = false
+        showInterest.value = false
       }
       else if (task instanceof Deduction) {
         showBasicDeduction.value = true
         showBasicIncome.value = false
-        showInterest = false
+        showInterest.value = false
       }
       else if (task instanceof Interest) {
         showInterest.value = true
-        showBasicIncome = false
-        showBasicDeduction = false
+        showBasicIncome.value = false
+        showBasicDeduction.value = false
       }
     })
 
