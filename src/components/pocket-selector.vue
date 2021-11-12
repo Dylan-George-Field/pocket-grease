@@ -37,19 +37,28 @@ export default {
     const store = useStore()
     
     watch(() => store.state.graph.selectedTask, (task) => {
-      if (task instanceof Income)
+      if (task instanceof Income) {
         showBasicIncome.value = true
-      else if (task instanceof Deduction)
+        showBasicDeduction.value = false
+        showInterest = false
+      }
+      else if (task instanceof Deduction) {
         showBasicDeduction.value = true
-      else if (task instanceof Interest)
+        showBasicIncome.value = false
+        showInterest = false
+      }
+      else if (task instanceof Interest) {
         showInterest.value = true
+        showBasicIncome = false
+        showBasicDeduction = false
+      }
     })
 
     let showBasicIncome = ref(false)
     let showBasicDeduction = ref(false)
     let showInterest = ref(false)
     
-    let showNavigation = function () {
+    const showNavigation = function () {
       return !(showBasicIncome.value || showBasicDeduction.value || showInterest.value)
     }
 
