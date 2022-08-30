@@ -96,7 +96,7 @@ export default {
       clearCanvas()
       void store.dispatch('graph/sortTasks')
       const tasks = store.state.graph.tasks as Task[]
-      
+
       if (tasks) {
         tasks.forEach(task => {
             task.calculate()

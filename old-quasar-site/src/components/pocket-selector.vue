@@ -1,11 +1,11 @@
 <template>
   <div v-show="showNavigation()" class="row q-gutter-md">
-    <q-btn color="primary" label="Basic Income" @click="showBasicIncome = !showBasicIncome" />
+    <q-btn color="primary" label="Income" @click="showIncome = !showIncome" />
     <q-btn color="primary" label="Basic Deduction" @click="showBasicDeduction = !showBasicDeduction" />
     <q-btn color="primary" label="Interest" @click="showInterest = !showInterest" />
   </div>
-  <div v-show="showBasicIncome">
-    <basic-income @saved="showBasicIncome = false" @cancel="showBasicIncome = false" />
+  <div v-show="showIncome">
+    <income-menu @cancel="showIncome=false" />
   </div>
   <div v-show="showBasicDeduction">
     <basic-deduction @saved="showBasicDeduction = false" @cancel="showBasicDeduction = false" />
@@ -23,7 +23,7 @@
 import { ref, watch } from 'vue'
 import { useStore } from 'vuex'
 
-import BasicIncome from 'src/components/basic-income.vue'
+import IncomeMenu from 'src/components/menus/income-menu.vue'
 import BasicDeduction from 'src/components/basic-deduction.vue'
 import CompoundInterest from 'src/components/compound-interest.vue'
 import Income from 'src/models/income'
@@ -32,39 +32,39 @@ import Interest from 'src/models/interest'
 
 export default {
   name: 'PocketSelector',
-  components: { BasicIncome, BasicDeduction, CompoundInterest },
+  components: { IncomeMenu, BasicDeduction, CompoundInterest },
   setup () {
     const store = useStore()
     
     watch(() => store.state.graph.selectedTask, (task) => {
       if (task instanceof Income) {
-        showBasicIncome.value = true
+        showIncome.value = true
         showBasicDeduction.value = false
         showInterest.value = false
       }
       else if (task instanceof Deduction) {
         showBasicDeduction.value = true
-        showBasicIncome.value = false
+        showIncome.value = false
         showInterest.value = false
       }
       else if (task instanceof Interest) {
         showInterest.value = true
-        showBasicIncome.value = false
+        showIncome.value = false
         showBasicDeduction.value = false
       }
     })
 
-    let showBasicIncome = ref(false)
+    let showIncome = ref(false)
     let showBasicDeduction = ref(false)
     let showInterest = ref(false)
     
     const showNavigation = function () {
-      return !(showBasicIncome.value || showBasicDeduction.value || showInterest.value)
+      return !(showIncome.value || showBasicDeduction.value || showInterest.value)
     }
 
     return {
       showNavigation,
-      showBasicIncome,
+      showIncome,
       showBasicDeduction,
       showInterest
     }

@@ -62,7 +62,11 @@ export function projectDeductionsOver100Years (state: any, payload: Deduction): 
 
 export function deduct (state: any): void {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    console.log(state.deductions)
+    if (state.deductions = [])
+      state.deductions = new Array(100).fill(0)
     const array = state.income.map((item: number, index: number) => {
+      console.log(state.deductions[index])
       return item - state.deductions[index]
     })
 

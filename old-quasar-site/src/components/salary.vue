@@ -1,8 +1,15 @@
 <template>
-    <h5 class="q-my-none">Income</h5>
+    <h5 class="q-my-none">Salary</h5>
     <q-input v-model.number="income" label="Yearly Income" type="number" />
     <q-input v-model.number="startAge" label="Start Age" type=number />
     <q-input v-model.number="retirementAge" label="Retirement Age" type="number" />
+    checkbox - allow for inflation
+    <div>
+      Tax
+    </div>
+    <div>
+      Superannuation
+    </div>
     <div class="row q-mt-sm q-gutter-sm">
       <q-btn color="primary" label="save" @click="save" class="q-mt-sm" />
       <q-btn color="primary" label="cancel" @click="cancel" class="q-mt-sm" outline />
@@ -20,7 +27,7 @@ import { ref, watch } from 'vue'
 import Income from 'src/models/income'
 
 export default {
-  name: 'BasicIncome',
+  name: 'salary',
   emits: ['saved'],
   setup (props, { emit }) {
     let income = ref(60000)
