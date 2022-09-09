@@ -29,13 +29,8 @@ function App() {
       Years: <input type="number" value={years} onChange={event => handleYearsChange(event)}></input>
       <p>Income</p>
       Salary: <input type="number" value={salary} onChange={event => handleSalaryChange(event)}></input>
-      <div>
-        <p>Total</p>
-        {total}
-        <p>Tax</p>
-        {}
-      </div>
-
+      <p>Total</p>
+      {total}
     </div>
   );
 }
