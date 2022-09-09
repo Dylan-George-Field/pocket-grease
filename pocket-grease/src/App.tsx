@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [years, setYears] = useState(0);
+  const [salary, setSalary] = useState(0)
+
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <p>Pocket Grease</p>
+      <form onSubmit={handleSubmit}>
+          <p>Age</p>
+          Years: <input type="number" value={years} onChange={event => setYears(parseInt(event.target.value))}></input>
+          <p>Income</p>
+          Salary: <input type="number" value={salary} onChange={event => setSalary(parseInt(event.target.value))}></input>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          <input type="submit" />
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </form>
+      <div>
+        <div>
+          <p>Total</p>
+          {years * salary}
+        </div>
+      </div>
+
     </div>
   );
 }
