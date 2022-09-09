@@ -3,29 +3,37 @@ import './App.css';
 
 function App() {
   const [years, setYears] = useState(0);
-  const [salary, setSalary] = useState(0)
+  const [salary, setSalary] = useState(0);
+  const [total, setTotal] = useState(0);
 
-  const handleSubmit = (event: { preventDefault: () => void; }) => {
-    event.preventDefault();
+  const handleYearsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const years = parseInt(event.target.value);
+    handleTotalChange(years, salary);
+  }
+
+  const handleSalaryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const salary = parseInt(event.target.value);
+    handleTotalChange(years, salary);
+  }
+
+  const handleTotalChange = (years: number, salary: number) => {
+    setYears(years);
+    setSalary(salary);
+    setTotal(years * salary);
   }
 
   return (
     <div className="App">
       <p>Pocket Grease</p>
-      <form onSubmit={handleSubmit}>
-          <p>Age</p>
-          Years: <input type="number" value={years} onChange={event => setYears(parseInt(event.target.value))}></input>
-          <p>Income</p>
-          Salary: <input type="number" value={salary} onChange={event => setSalary(parseInt(event.target.value))}></input>
-        <p>
-          <input type="submit" />
-        </p>
-      </form>
+      <p>Age</p>
+      Years: <input type="number" value={years} onChange={event => handleYearsChange(event)}></input>
+      <p>Income</p>
+      Salary: <input type="number" value={salary} onChange={event => handleSalaryChange(event)}></input>
       <div>
-        <div>
-          <p>Total</p>
-          {years * salary}
-        </div>
+        <p>Total</p>
+        {total}
+        <p>Tax</p>
+        {}
       </div>
 
     </div>
