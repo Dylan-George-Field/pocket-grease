@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import IncomeTaxView from './components/IncomeTaxView'
 import MedicareLevyView from './components/MedicareLevyView'
+import SuperannuationView from './components/SuperannuationView'
 
 function App() {
   const [years, setYears] = useState(0);
@@ -31,10 +32,9 @@ function App() {
       Years: <input type="number" value={years} onChange={event => handleYearsChange(event)}></input>
       <p>Income</p>
       Salary: <input type="number" value={salary} onChange={event => handleSalaryChange(event)}></input>
-      <p>Total</p>
-      {total}
-      <IncomeTaxView total={salary} years={years} />
-      <MedicareLevyView total={salary} years={years} />
+      <p><b>Gross</b></p>
+      ${total}
+      <SuperannuationView total={salary} years={years} />
     </div>
   );
 }

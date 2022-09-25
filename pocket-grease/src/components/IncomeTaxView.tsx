@@ -1,3 +1,5 @@
+import MedicareLevyView from './MedicareLevyView'
+
 function CalculateIncomeTax(income: number) {
     if (income <= 18200) {
         let tax = 0;
@@ -33,18 +35,22 @@ function CalculateIncomeTax(income: number) {
 }
 
 function IncomeTaxView(props: PreTax) {
-    const yearlyIncomeTax = CalculateIncomeTax(props.total)
+    const yearlyIncomeTax = CalculateIncomeTax(props.preTaxSalary)
+    const total = props.preTaxSalary - yearlyIncomeTax
     
     return <>
-        <p>Tax</p>
-        <p>Income tax yearly: {yearlyIncomeTax}</p>
-        <p>Income tax total: {yearlyIncomeTax * props.years}</p>
+        <p><b>Income Tax</b></p>
+        <p>Yearly: {yearlyIncomeTax}</p>
+        <p>Total: {yearlyIncomeTax * props.years}</p>
+        <MedicareLevyView total={total} preTaxSalary={props.preTaxSalary} years={props.years} gross={props.gross} super={props.super} />
     </>
 }
 
 interface PreTax {
-    total: number;
-    years: number;
+    preTaxSalary: number
+    years: number
+    gross: number
+    super: number
 }
 
 export default IncomeTaxView;
