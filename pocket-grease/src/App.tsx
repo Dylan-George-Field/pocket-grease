@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import  IncomeTaxView from './components/IncomeTaxView';
+import IncomeTaxView from './components/IncomeTaxView'
+import MedicareLevyView from './components/MedicareLevyView'
 
 function App() {
   const [years, setYears] = useState(0);
@@ -33,6 +34,7 @@ function App() {
       <p>Total</p>
       {total}
       <IncomeTaxView total={salary} years={years} />
+      <MedicareLevyView total={salary} years={years} />
     </div>
   );
 }
