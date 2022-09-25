@@ -32,7 +32,7 @@ function App() {
       Years: <input type="number" value={years} onChange={event => handleYearsChange(event)}></input>
       <p>Income</p>
       Salary: <input type="number" value={salary} onChange={event => handleSalaryChange(event)}></input>
-      <p><b>Gross</b></p>
+      <p><b>Gross Income</b></p>
       ${total}
       <SuperannuationView total={salary} years={years} />
     </div>
