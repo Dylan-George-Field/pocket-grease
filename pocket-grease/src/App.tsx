@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import  IncomeTaxView from './components/IncomeTaxView';
 
 function App() {
   const [years, setYears] = useState(0);
@@ -31,6 +32,7 @@ function App() {
       Salary: <input type="number" value={salary} onChange={event => handleSalaryChange(event)}></input>
       <p>Total</p>
       {total}
+      <IncomeTaxView total={salary} years={years} />
     </div>
   );
 }
